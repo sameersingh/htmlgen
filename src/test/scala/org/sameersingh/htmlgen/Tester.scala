@@ -15,7 +15,7 @@ class Tester(c: Converter) {
         "\n<hr>\n" + wrap("Iterables", "h3") + wrap(iterables, "div") +
         "\n<hr>\n" + wrap("Products", "h3") + wrap(products, "div") +
         "\n<hr>\n" + wrap("Hybrid", "h3") + wrap(hybrid, "div")
-      , "ul")
+      , "div")
     val html = htmlWrap(body)
     writeFile(filename, html)
   }
@@ -23,7 +23,7 @@ class Tester(c: Converter) {
 
   def print(a: Any, dataType: String): String = {
     wrap(dataType, "h4") +
-      "<code style=\"background-color:#F0FFFF;\">%s</code>" format(a.toString) +
+      ("<code style=\"background-color:#F0FFFF;\">%s</code>" format (a.toString)) +
       wrap(a.source, "div")
   }
 
