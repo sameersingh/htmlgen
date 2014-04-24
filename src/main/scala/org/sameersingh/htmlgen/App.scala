@@ -7,7 +7,8 @@ package org.sameersingh.htmlgen
  */
 object App {
 
-  import Implicits._
+  import ListConverter.Implicits._
+  //import TableConverter.Implicits._
 
   def print[T](t: T) {
     val html: HTML = t

@@ -1,11 +1,12 @@
 package org.sameersingh.htmlgen
 
+import java.io.{FileOutputStream, PrintWriter}
+
 /**
  * @author sameer
  * @since 4/23/14.
  */
-object Converters {
-
+object ConverterUtils {
   val propertyClass = "property"
   val maxIndent = 25
 
@@ -16,66 +17,26 @@ object Converters {
     "<%s%s>%s</%s>" format(tag, classString, string, tag)
   }
 
-  def convert(a: Any, indentLevel: Int = 0): HTML = if (maxIndent <= indentLevel) RawHTML("<code>...</code>")
-  else a match {
-    case m: scala.collection.Map[Any, Any] => map(m, indentLevel)
-    case i: Iterable[Any] => iterable(i, indentLevel)
-    case p: Product => product(p, indentLevel)
-    case _ => RawHTML(indent(indentLevel) + "<code>" + a.toString + "</code>\n")
+  def htmlWrap(body: String): String = {
+    wrap(wrap("<link rel=\"stylesheet\" type=\"text/css\" href=\"htmlgen.css\">", "head") + wrap(body, "body"), "html")
   }
 
-  def map(m: scala.collection.Map[Any, Any], indentLevel: Int = 0): HTML = {
-    val sb = new StringBuffer()
-    sb append (indent(indentLevel) + "<table>\n")
-    sb append (wrap("<td colspan=\"2\" class=\"property\">" + m.stringPrefix + "</td>", "tr") + "\n")
-    for ((k, v) <- m) {
-      sb append (indent(indentLevel + 1)
-        + "<tr>"
-        + wrap(convert(k, indentLevel + 2).source, "td", propertyClass)
-        + wrap(convert(v, indentLevel + 2).source, "td")
-        + "</tr>\n")
-    }
-    sb append (indent(indentLevel) + "</table>\n")
-    RawHTML(sb.toString)
-  }
+  def link(href: String, text: String) = "<a href=\"%s\">%s</a>" format(href, text)
 
-  def iterable(i: Iterable[Any], indentLevel: Int): HTML = {
-    val ordered = (i.isInstanceOf[Seq[Any]])
-    val cols = if(ordered) 2 else 1
-    val sb = new StringBuffer()
-    sb append (indent(indentLevel) + "<table>\n")
-    sb append (wrap("<td colspan=\"" + cols + "\" class=\"property\">" + i.stringPrefix + "</td>", "tr") + "\n")
-    var idx = 0
-    for (item <- i) {
-      sb append (indent(indentLevel + 1)
-        + "<tr>"
-        + (if (ordered) wrap(convert("[" + idx + "]", indentLevel + 2).source, "td", propertyClass) else "")
-        + wrap(convert(item, indentLevel + 2).source, "td")
-        + "</tr>\n")
-      idx += 1
-    }
-    sb append (indent(indentLevel) + "</table>\n")
-    RawHTML(sb.toString)
-  }
-
-  def product(p: Product, indentLevel: Int): HTML = {
-    val sb = new StringBuffer()
-    val fields = p.getClass.getDeclaredFields
-    sb append (indent(indentLevel) + "<table>\n")
-    sb append (wrap("<td colspan=\"2\" class=\"property\">" + p.productPrefix + "</td>", "tr") + "\n")
-    for (f <- fields) {
-      f.setAccessible(true)
-      sb append (indent(indentLevel + 1)
-        + "<tr>"
-        + wrap(f.getName, "td", propertyClass)
-        + wrap(convert(f.get(p), indentLevel + 2).source + indent(indentLevel + 1), "td")
-        + "</tr>\n")
-    }
-    sb append (indent(indentLevel) + "</table>\n")
-    RawHTML(sb.toString)
+  def writeFile(fname: String, html: String): Unit = {
+    val writer = new PrintWriter(new FileOutputStream(fname))
+    writer.print(html)
+    writer.flush()
+    writer.close()
   }
 }
 
-object Implicits {
-  implicit def anyToHTML(a: Any): HTML = Converters.convert(a)
+object Converters {
+  val default: Converter = TableConverter
+
+  def html(a: Any): HTML = default.convert(a)
+
+  def tables(a: Any): HTML = TableConverter.convert(a)
+
+  def lists(a: Any): HTML = ListConverter.convert(a)
 }
