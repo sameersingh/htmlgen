@@ -39,4 +39,6 @@ object Converters {
   def tables(a: Any): HTML = TableConverter.convert(a)
 
   def lists(a: Any): HTML = ListConverter.convert(a)
+
+  def string(a: Any): HTML = StringConverter.convert(a)
 }

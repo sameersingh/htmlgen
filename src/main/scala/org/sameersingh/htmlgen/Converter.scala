@@ -1,5 +1,7 @@
 package org.sameersingh.htmlgen
 
+import scala.collection
+
 /**
  * @author sameer
  * @since 4/24/14.
@@ -31,6 +33,16 @@ trait Converter {
     implicit def anyToHTML(a: Any): HTML = convert(a)
   }
 
+}
+
+object StringConverter extends Converter {
+  override def iterable(a: Iterable[Any], indentLevel: Int): HTML = RawHTML(a.toString)
+
+  override def product(a: Product, indentLevel: Int): HTML = RawHTML(a.toString)
+
+  override def map(a: collection.Map[Any, Any], indentLevel: Int): HTML = RawHTML(a.toString)
+
+  override def string(a: String, indentLevel: Int): HTML = RawHTML(a.toString)
 }
 
 class Convertable(a: Any, c: Converter) {
