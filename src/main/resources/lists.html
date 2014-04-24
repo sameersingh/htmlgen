@@ -1,0 +1,305 @@
+<html><head><link rel="stylesheet" type="text/css" href="htmlgen.css"></head><body><h2>Generated HTML Using Lists</h2><ul>
+<hr>
+<h3>Basic</h3><div><h4>Int</h4><code style="background-color:#F0FFFF;">10<div><code>10</code>
+</div></code><h4>Double</h4><code style="background-color:#F0FFFF;">10.0<div><code>10.0</code>
+</div></code><h4>String</h4><code style="background-color:#F0FFFF;">qwerty<div><code>qwerty</code>
+</div></code></div>
+<hr>
+<h3>Iterables</h3><div><h4>List</h4><code style="background-color:#F0FFFF;">List(10, 20, 30, 40)<div><span class="property">List</span><ol start="0">
+  <li>    <code>10</code>
+</li>  <li>    <code>20</code>
+</li>  <li>    <code>30</code>
+</li>  <li>    <code>40</code>
+</li></ol>
+</div></code><h4>Seq</h4><code style="background-color:#F0FFFF;">List(10, 20, 30, 40)<div><span class="property">List</span><ol start="0">
+  <li>    <code>10</code>
+</li>  <li>    <code>20</code>
+</li>  <li>    <code>30</code>
+</li>  <li>    <code>40</code>
+</li></ol>
+</div></code><h4>Set</h4><code style="background-color:#F0FFFF;">Set(10, 20, 30, 40)<div><span class="property">Set</span><ul start="0">
+  <li>    <code>10</code>
+</li>  <li>    <code>20</code>
+</li>  <li>    <code>30</code>
+</li>  <li>    <code>40</code>
+</li></ul>
+</div></code><h4>Map</h4><code style="background-color:#F0FFFF;">Map(a -> 10, b -> 20, c -> 30, d -> 40)<div><span class="property">Map</span><ul>
+  <li><span class="property">    <code>a</code>
+</span> &#8594; <span>    <code>10</code>
+</span></li>
+  <li><span class="property">    <code>b</code>
+</span> &#8594; <span>    <code>20</code>
+</span></li>
+  <li><span class="property">    <code>c</code>
+</span> &#8594; <span>    <code>30</code>
+</span></li>
+  <li><span class="property">    <code>d</code>
+</span> &#8594; <span>    <code>40</code>
+</span></li>
+</ul>
+</div></code></div>
+<hr>
+<h3>Products</h3><div><h4>Pair</h4><code style="background-color:#F0FFFF;">(a,100)<div><span class="property">Tuple2</span><ul>
+  <li><span class="property">_1</span>:     <code>a</code>
+</li>
+  <li><span class="property">_2</span>:     <code>100</code>
+</li>
+</ul>
+</div></code><h4>Tuple3</h4><code style="background-color:#F0FFFF;">(a,10,100.0)<div><span class="property">Tuple3</span><ul>
+  <li><span class="property">_1</span>:     <code>a</code>
+</li>
+  <li><span class="property">_2</span>:     <code>10</code>
+</li>
+  <li><span class="property">_3</span>:     <code>100.0</code>
+</li>
+</ul>
+</div></code><h4>Case</h4><code style="background-color:#F0FFFF;">Company(Battle School,Seattle, WA)<div><span class="property">Company</span><ul>
+  <li><span class="property">name</span>:     <code>Battle School</code>
+</li>
+  <li><span class="property">address</span>:     <code>Seattle, WA</code>
+</li>
+</ul>
+</div></code><h4>Case (Nested)</h4><code style="background-color:#F0FFFF;">Person(Andrew,Wiggin,ender@intfleet.com,65,Company(Battle School,Seattle, WA))<div><span class="property">Person</span><ul>
+  <li><span class="property">first</span>:     <code>Andrew</code>
+</li>
+  <li><span class="property">last</span>:     <code>Wiggin</code>
+</li>
+  <li><span class="property">email</span>:     <code>ender@intfleet.com</code>
+</li>
+  <li><span class="property">age</span>:     <code>65</code>
+</li>
+  <li><span class="property">employedBy</span>: <span class="property">Company</span>    <ul>
+      <li><span class="property">name</span>:         <code>Battle School</code>
+</li>
+      <li><span class="property">address</span>:         <code>Seattle, WA</code>
+</li>
+    </ul>
+</li>
+</ul>
+</div></code></div>
+<hr>
+<h3>Hybrid</h3><div><h4>List of lists</h4><code style="background-color:#F0FFFF;">List(List(10, 20, 30, 40), List(1.0, 2.0, 3.0, 4.0), List(a, b, c, d))<div><span class="property">List</span><ol start="0">
+  <li><span class="property">List</span>    <ol start="0">
+      <li>        <code>10</code>
+</li>      <li>        <code>20</code>
+</li>      <li>        <code>30</code>
+</li>      <li>        <code>40</code>
+</li>    </ol>
+</li>  <li><span class="property">List</span>    <ol start="0">
+      <li>        <code>1.0</code>
+</li>      <li>        <code>2.0</code>
+</li>      <li>        <code>3.0</code>
+</li>      <li>        <code>4.0</code>
+</li>    </ol>
+</li>  <li><span class="property">List</span>    <ol start="0">
+      <li>        <code>a</code>
+</li>      <li>        <code>b</code>
+</li>      <li>        <code>c</code>
+</li>      <li>        <code>d</code>
+</li>    </ol>
+</li></ol>
+</div></code><h4>Set of lists</h4><code style="background-color:#F0FFFF;">Set(List(10, 20, 30, 40), List(1.0, 2.0, 3.0, 4.0), List(a, b, c, d))<div><span class="property">Set</span><ul start="0">
+  <li><span class="property">List</span>    <ol start="0">
+      <li>        <code>10</code>
+</li>      <li>        <code>20</code>
+</li>      <li>        <code>30</code>
+</li>      <li>        <code>40</code>
+</li>    </ol>
+</li>  <li><span class="property">List</span>    <ol start="0">
+      <li>        <code>1.0</code>
+</li>      <li>        <code>2.0</code>
+</li>      <li>        <code>3.0</code>
+</li>      <li>        <code>4.0</code>
+</li>    </ol>
+</li>  <li><span class="property">List</span>    <ol start="0">
+      <li>        <code>a</code>
+</li>      <li>        <code>b</code>
+</li>      <li>        <code>c</code>
+</li>      <li>        <code>d</code>
+</li>    </ol>
+</li></ul>
+</div></code><h4>List of sets</h4><code style="background-color:#F0FFFF;">List(Set(10, 20, 30, 40), Set(1.0, 2.0, 3.0, 4.0), Set(a, b, c, d))<div><span class="property">List</span><ol start="0">
+  <li><span class="property">Set</span>    <ul start="0">
+      <li>        <code>10</code>
+</li>      <li>        <code>20</code>
+</li>      <li>        <code>30</code>
+</li>      <li>        <code>40</code>
+</li>    </ul>
+</li>  <li><span class="property">Set</span>    <ul start="0">
+      <li>        <code>1.0</code>
+</li>      <li>        <code>2.0</code>
+</li>      <li>        <code>3.0</code>
+</li>      <li>        <code>4.0</code>
+</li>    </ul>
+</li>  <li><span class="property">Set</span>    <ul start="0">
+      <li>        <code>a</code>
+</li>      <li>        <code>b</code>
+</li>      <li>        <code>c</code>
+</li>      <li>        <code>d</code>
+</li>    </ul>
+</li></ol>
+</div></code><h4>Map of lists to sets</h4><code style="background-color:#F0FFFF;">Map(List(100, 200) -> Set(a, b), List(10, 20) -> Set(abraca, dabra))<div><span class="property">Map</span><ul>
+  <li><span class="property"><span class="property">List</span>    <ol start="0">
+      <li>        <code>100</code>
+</li>      <li>        <code>200</code>
+</li>    </ol>
+</span> &#8594; <span><span class="property">Set</span>    <ul start="0">
+      <li>        <code>a</code>
+</li>      <li>        <code>b</code>
+</li>    </ul>
+</span></li>
+  <li><span class="property"><span class="property">List</span>    <ol start="0">
+      <li>        <code>10</code>
+</li>      <li>        <code>20</code>
+</li>    </ol>
+</span> &#8594; <span><span class="property">Set</span>    <ul start="0">
+      <li>        <code>abraca</code>
+</li>      <li>        <code>dabra</code>
+</li>    </ul>
+</span></li>
+</ul>
+</div></code><h4>List of Cases</h4><code style="background-color:#F0FFFF;">List(Company(Battle School,Seattle, WA), Company(Command School,Mountain View, CA), Company(Dept of Xenobiology,Lusitania))<div><span class="property">List</span><ol start="0">
+  <li><span class="property">Company</span>    <ul>
+      <li><span class="property">name</span>:         <code>Battle School</code>
+</li>
+      <li><span class="property">address</span>:         <code>Seattle, WA</code>
+</li>
+    </ul>
+</li>  <li><span class="property">Company</span>    <ul>
+      <li><span class="property">name</span>:         <code>Command School</code>
+</li>
+      <li><span class="property">address</span>:         <code>Mountain View, CA</code>
+</li>
+    </ul>
+</li>  <li><span class="property">Company</span>    <ul>
+      <li><span class="property">name</span>:         <code>Dept of Xenobiology</code>
+</li>
+      <li><span class="property">address</span>:         <code>Lusitania</code>
+</li>
+    </ul>
+</li></ol>
+</div></code><h4>Set of Nested Cases</h4><code style="background-color:#F0FFFF;">Set(Person(Andrew,Wiggin,ender@intfleet.com,10,Company(Command School,Mountain View, CA)), Person(Hyrum,Graff,graff@intfleet.com,65,Company(Command School,Mountain View, CA)), Person(Ivanova,von Hesse,novinha@xenbio.com,25,Company(Dept of Xenobiology,Lusitania)))<div><span class="property">Set</span><ul start="0">
+  <li><span class="property">Person</span>    <ul>
+      <li><span class="property">first</span>:         <code>Andrew</code>
+</li>
+      <li><span class="property">last</span>:         <code>Wiggin</code>
+</li>
+      <li><span class="property">email</span>:         <code>ender@intfleet.com</code>
+</li>
+      <li><span class="property">age</span>:         <code>10</code>
+</li>
+      <li><span class="property">employedBy</span>: <span class="property">Company</span>        <ul>
+          <li><span class="property">name</span>:             <code>Command School</code>
+</li>
+          <li><span class="property">address</span>:             <code>Mountain View, CA</code>
+</li>
+        </ul>
+</li>
+    </ul>
+</li>  <li><span class="property">Person</span>    <ul>
+      <li><span class="property">first</span>:         <code>Hyrum</code>
+</li>
+      <li><span class="property">last</span>:         <code>Graff</code>
+</li>
+      <li><span class="property">email</span>:         <code>graff@intfleet.com</code>
+</li>
+      <li><span class="property">age</span>:         <code>65</code>
+</li>
+      <li><span class="property">employedBy</span>: <span class="property">Company</span>        <ul>
+          <li><span class="property">name</span>:             <code>Command School</code>
+</li>
+          <li><span class="property">address</span>:             <code>Mountain View, CA</code>
+</li>
+        </ul>
+</li>
+    </ul>
+</li>  <li><span class="property">Person</span>    <ul>
+      <li><span class="property">first</span>:         <code>Ivanova</code>
+</li>
+      <li><span class="property">last</span>:         <code>von Hesse</code>
+</li>
+      <li><span class="property">email</span>:         <code>novinha@xenbio.com</code>
+</li>
+      <li><span class="property">age</span>:         <code>25</code>
+</li>
+      <li><span class="property">employedBy</span>: <span class="property">Company</span>        <ul>
+          <li><span class="property">name</span>:             <code>Dept of Xenobiology</code>
+</li>
+          <li><span class="property">address</span>:             <code>Lusitania</code>
+</li>
+        </ul>
+</li>
+    </ul>
+</li></ul>
+</div></code><h4>Map of Cases to list of Nested Cases</h4><code style="background-color:#F0FFFF;">Map(Company(Command School,Mountain View, CA) -> List(Person(Andrew,Wiggin,ender@intfleet.com,10,Company(Command School,Mountain View, CA)), Person(Hyrum,Graff,graff@intfleet.com,65,Company(Command School,Mountain View, CA))), Company(Dept of Xenobiology,Lusitania) -> List(Person(Ivanova,von Hesse,novinha@xenbio.com,25,Company(Dept of Xenobiology,Lusitania))))<div><span class="property">Map</span><ul>
+  <li><span class="property"><span class="property">Company</span>    <ul>
+      <li><span class="property">name</span>:         <code>Command School</code>
+</li>
+      <li><span class="property">address</span>:         <code>Mountain View, CA</code>
+</li>
+    </ul>
+</span> &#8594; <span><span class="property">List</span>    <ol start="0">
+      <li><span class="property">Person</span>        <ul>
+          <li><span class="property">first</span>:             <code>Andrew</code>
+</li>
+          <li><span class="property">last</span>:             <code>Wiggin</code>
+</li>
+          <li><span class="property">email</span>:             <code>ender@intfleet.com</code>
+</li>
+          <li><span class="property">age</span>:             <code>10</code>
+</li>
+          <li><span class="property">employedBy</span>: <span class="property">Company</span>            <ul>
+              <li><span class="property">name</span>:                 <code>Command School</code>
+</li>
+              <li><span class="property">address</span>:                 <code>Mountain View, CA</code>
+</li>
+            </ul>
+</li>
+        </ul>
+</li>      <li><span class="property">Person</span>        <ul>
+          <li><span class="property">first</span>:             <code>Hyrum</code>
+</li>
+          <li><span class="property">last</span>:             <code>Graff</code>
+</li>
+          <li><span class="property">email</span>:             <code>graff@intfleet.com</code>
+</li>
+          <li><span class="property">age</span>:             <code>65</code>
+</li>
+          <li><span class="property">employedBy</span>: <span class="property">Company</span>            <ul>
+              <li><span class="property">name</span>:                 <code>Command School</code>
+</li>
+              <li><span class="property">address</span>:                 <code>Mountain View, CA</code>
+</li>
+            </ul>
+</li>
+        </ul>
+</li>    </ol>
+</span></li>
+  <li><span class="property"><span class="property">Company</span>    <ul>
+      <li><span class="property">name</span>:         <code>Dept of Xenobiology</code>
+</li>
+      <li><span class="property">address</span>:         <code>Lusitania</code>
+</li>
+    </ul>
+</span> &#8594; <span><span class="property">List</span>    <ol start="0">
+      <li><span class="property">Person</span>        <ul>
+          <li><span class="property">first</span>:             <code>Ivanova</code>
+</li>
+          <li><span class="property">last</span>:             <code>von Hesse</code>
+</li>
+          <li><span class="property">email</span>:             <code>novinha@xenbio.com</code>
+</li>
+          <li><span class="property">age</span>:             <code>25</code>
+</li>
+          <li><span class="property">employedBy</span>: <span class="property">Company</span>            <ul>
+              <li><span class="property">name</span>:                 <code>Dept of Xenobiology</code>
+</li>
+              <li><span class="property">address</span>:                 <code>Lusitania</code>
+</li>
+            </ul>
+</li>
+        </ul>
+</li>    </ol>
+</span></li>
+</ul>
+</div></code></div></ul></body></html>
