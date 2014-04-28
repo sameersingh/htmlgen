@@ -20,7 +20,7 @@ Converters
   * [x] toString
   * [x] Tables for everything
   * [x] Lists for everything
-  * [ ] `div` and `span` based
+  * [x] `div` and `span` based
   * [ ] D3js/Canvas based
 
 ## Examples
