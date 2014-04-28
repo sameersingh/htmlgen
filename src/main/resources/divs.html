@@ -1,0 +1,391 @@
+<html><head><link rel="stylesheet" type="text/css" href="htmlgen.css"></head><body><h2>Generated HTML Using Divs</h2><div>
+<hr>
+<h3>Basic</h3><div><h4>Int</h4>
+<code style="background-color:#F0FFFF;">10</code>
+<div>
+<span class="asString String">10</span>
+</div>
+<h4>Double</h4>
+<code style="background-color:#F0FFFF;">10.0</code>
+<div>
+<span class="asString String">10.0</span>
+</div>
+<h4>String</h4>
+<code style="background-color:#F0FFFF;">qwerty</code>
+<div>
+<span class="asString String">qwerty</span>
+</div>
+</div>
+<hr>
+<h3>Iterables</h3><div><h4>List</h4>
+<code style="background-color:#F0FFFF;">List(10, 20, 30, 40)</code>
+<div>
+<div class="asIterable List"><span class="typeName">List</span>
+<ol start="0" class="fields">
+  <li class="fieldValue"><span class="asString String">10</span></li>
+  <li class="fieldValue"><span class="asString String">20</span></li>
+  <li class="fieldValue"><span class="asString String">30</span></li>
+  <li class="fieldValue"><span class="asString String">40</span></li>
+</ol>
+</div>
+</div>
+<h4>Seq</h4>
+<code style="background-color:#F0FFFF;">List(10, 20, 30, 40)</code>
+<div>
+<div class="asIterable List"><span class="typeName">List</span>
+<ol start="0" class="fields">
+  <li class="fieldValue"><span class="asString String">10</span></li>
+  <li class="fieldValue"><span class="asString String">20</span></li>
+  <li class="fieldValue"><span class="asString String">30</span></li>
+  <li class="fieldValue"><span class="asString String">40</span></li>
+</ol>
+</div>
+</div>
+<h4>Set</h4>
+<code style="background-color:#F0FFFF;">Set(10, 20, 30, 40)</code>
+<div>
+<div class="asIterable Set"><span class="typeName">Set</span>
+<ul start="0" class="fields">
+  <li class="fieldValue"><span class="asString String">10</span></li>
+  <li class="fieldValue"><span class="asString String">20</span></li>
+  <li class="fieldValue"><span class="asString String">30</span></li>
+  <li class="fieldValue"><span class="asString String">40</span></li>
+</ul>
+</div>
+</div>
+<h4>Map</h4>
+<code style="background-color:#F0FFFF;">Map(a -> 10, b -> 20, c -> 30, d -> 40)</code>
+<div>
+<div class="asMap Map"><span class="typeName">Map</span>
+<ul class="fields">
+  <li class="field"><span class="fieldName"><span class="asString String">a</span></span> <span class="fieldValue"><span class="asString String">10</span></span></li>
+  <li class="field"><span class="fieldName"><span class="asString String">b</span></span> <span class="fieldValue"><span class="asString String">20</span></span></li>
+  <li class="field"><span class="fieldName"><span class="asString String">c</span></span> <span class="fieldValue"><span class="asString String">30</span></span></li>
+  <li class="field"><span class="fieldName"><span class="asString String">d</span></span> <span class="fieldValue"><span class="asString String">40</span></span></li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+<h3>Products</h3><div><h4>Pair</h4>
+<code style="background-color:#F0FFFF;">(a,100)</code>
+<div>
+<div class="asProduct Tuple2"><span class="typeName">Tuple2</span>
+<ul class="fields">
+  <li class="field"><span class="fieldName">_1</span> <span class="fieldValue"><span class="asString String">a</span></span></li>
+  <li class="field"><span class="fieldName">_2</span> <span class="fieldValue"><span class="asString String">100</span></span></li>
+</ul>
+</div>
+</div>
+<h4>Tuple3</h4>
+<code style="background-color:#F0FFFF;">(a,10,100.0)</code>
+<div>
+<div class="asProduct Tuple3"><span class="typeName">Tuple3</span>
+<ul class="fields">
+  <li class="field"><span class="fieldName">_1</span> <span class="fieldValue"><span class="asString String">a</span></span></li>
+  <li class="field"><span class="fieldName">_2</span> <span class="fieldValue"><span class="asString String">10</span></span></li>
+  <li class="field"><span class="fieldName">_3</span> <span class="fieldValue"><span class="asString String">100.0</span></span></li>
+</ul>
+</div>
+</div>
+<h4>Case</h4>
+<code style="background-color:#F0FFFF;">Company(Battle School,Seattle, WA)</code>
+<div>
+<div class="asProduct Company"><span class="typeName">Company</span>
+<ul class="fields">
+  <li class="field"><span class="fieldName">name</span> <span class="fieldValue"><span class="asString String">Battle School</span></span></li>
+  <li class="field"><span class="fieldName">address</span> <span class="fieldValue"><span class="asString String">Seattle, WA</span></span></li>
+</ul>
+</div>
+</div>
+<h4>Case (Nested)</h4>
+<code style="background-color:#F0FFFF;">Person(Andrew,Wiggin,ender@intfleet.com,65,Company(Battle School,Seattle, WA))</code>
+<div>
+<div class="asProduct Person"><span class="typeName">Person</span>
+<ul class="fields">
+  <li class="field"><span class="fieldName">first</span> <span class="fieldValue"><span class="asString String">Andrew</span></span></li>
+  <li class="field"><span class="fieldName">last</span> <span class="fieldValue"><span class="asString String">Wiggin</span></span></li>
+  <li class="field"><span class="fieldName">email</span> <span class="fieldValue"><span class="asString String">ender@intfleet.com</span></span></li>
+  <li class="field"><span class="fieldName">age</span> <span class="fieldValue"><span class="asString String">65</span></span></li>
+  <li class="field"><span class="fieldName">employedBy</span> <span class="fieldValue"><div class="asProduct Company"><span class="typeName">Company</span>
+    <ul class="fields">
+      <li class="field"><span class="fieldName">name</span> <span class="fieldValue"><span class="asString String">Battle School</span></span></li>
+      <li class="field"><span class="fieldName">address</span> <span class="fieldValue"><span class="asString String">Seattle, WA</span></span></li>
+    </ul>
+</div></span></li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+<h3>Hybrid</h3><div><h4>List of lists</h4>
+<code style="background-color:#F0FFFF;">List(List(10, 20, 30, 40), List(1.0, 2.0, 3.0, 4.0), List(a, b, c, d))</code>
+<div>
+<div class="asIterable List"><span class="typeName">List</span>
+<ol start="0" class="fields">
+  <li class="fieldValue"><div class="asIterable List"><span class="typeName">List</span>
+    <ol start="0" class="fields">
+      <li class="fieldValue"><span class="asString String">10</span></li>
+      <li class="fieldValue"><span class="asString String">20</span></li>
+      <li class="fieldValue"><span class="asString String">30</span></li>
+      <li class="fieldValue"><span class="asString String">40</span></li>
+    </ol>
+</div></li>
+  <li class="fieldValue"><div class="asIterable List"><span class="typeName">List</span>
+    <ol start="0" class="fields">
+      <li class="fieldValue"><span class="asString String">1.0</span></li>
+      <li class="fieldValue"><span class="asString String">2.0</span></li>
+      <li class="fieldValue"><span class="asString String">3.0</span></li>
+      <li class="fieldValue"><span class="asString String">4.0</span></li>
+    </ol>
+</div></li>
+  <li class="fieldValue"><div class="asIterable List"><span class="typeName">List</span>
+    <ol start="0" class="fields">
+      <li class="fieldValue"><span class="asString String">a</span></li>
+      <li class="fieldValue"><span class="asString String">b</span></li>
+      <li class="fieldValue"><span class="asString String">c</span></li>
+      <li class="fieldValue"><span class="asString String">d</span></li>
+    </ol>
+</div></li>
+</ol>
+</div>
+</div>
+<h4>Set of lists</h4>
+<code style="background-color:#F0FFFF;">Set(List(10, 20, 30, 40), List(1.0, 2.0, 3.0, 4.0), List(a, b, c, d))</code>
+<div>
+<div class="asIterable Set"><span class="typeName">Set</span>
+<ul start="0" class="fields">
+  <li class="fieldValue"><div class="asIterable List"><span class="typeName">List</span>
+    <ol start="0" class="fields">
+      <li class="fieldValue"><span class="asString String">10</span></li>
+      <li class="fieldValue"><span class="asString String">20</span></li>
+      <li class="fieldValue"><span class="asString String">30</span></li>
+      <li class="fieldValue"><span class="asString String">40</span></li>
+    </ol>
+</div></li>
+  <li class="fieldValue"><div class="asIterable List"><span class="typeName">List</span>
+    <ol start="0" class="fields">
+      <li class="fieldValue"><span class="asString String">1.0</span></li>
+      <li class="fieldValue"><span class="asString String">2.0</span></li>
+      <li class="fieldValue"><span class="asString String">3.0</span></li>
+      <li class="fieldValue"><span class="asString String">4.0</span></li>
+    </ol>
+</div></li>
+  <li class="fieldValue"><div class="asIterable List"><span class="typeName">List</span>
+    <ol start="0" class="fields">
+      <li class="fieldValue"><span class="asString String">a</span></li>
+      <li class="fieldValue"><span class="asString String">b</span></li>
+      <li class="fieldValue"><span class="asString String">c</span></li>
+      <li class="fieldValue"><span class="asString String">d</span></li>
+    </ol>
+</div></li>
+</ul>
+</div>
+</div>
+<h4>List of sets</h4>
+<code style="background-color:#F0FFFF;">List(Set(10, 20, 30, 40), Set(1.0, 2.0, 3.0, 4.0), Set(a, b, c, d))</code>
+<div>
+<div class="asIterable List"><span class="typeName">List</span>
+<ol start="0" class="fields">
+  <li class="fieldValue"><div class="asIterable Set"><span class="typeName">Set</span>
+    <ul start="0" class="fields">
+      <li class="fieldValue"><span class="asString String">10</span></li>
+      <li class="fieldValue"><span class="asString String">20</span></li>
+      <li class="fieldValue"><span class="asString String">30</span></li>
+      <li class="fieldValue"><span class="asString String">40</span></li>
+    </ul>
+</div></li>
+  <li class="fieldValue"><div class="asIterable Set"><span class="typeName">Set</span>
+    <ul start="0" class="fields">
+      <li class="fieldValue"><span class="asString String">1.0</span></li>
+      <li class="fieldValue"><span class="asString String">2.0</span></li>
+      <li class="fieldValue"><span class="asString String">3.0</span></li>
+      <li class="fieldValue"><span class="asString String">4.0</span></li>
+    </ul>
+</div></li>
+  <li class="fieldValue"><div class="asIterable Set"><span class="typeName">Set</span>
+    <ul start="0" class="fields">
+      <li class="fieldValue"><span class="asString String">a</span></li>
+      <li class="fieldValue"><span class="asString String">b</span></li>
+      <li class="fieldValue"><span class="asString String">c</span></li>
+      <li class="fieldValue"><span class="asString String">d</span></li>
+    </ul>
+</div></li>
+</ol>
+</div>
+</div>
+<h4>Map of lists to sets</h4>
+<code style="background-color:#F0FFFF;">Map(List(100, 200) -> Set(a, b), List(10, 20) -> Set(abraca, dabra))</code>
+<div>
+<div class="asMap Map"><span class="typeName">Map</span>
+<ul class="fields">
+  <li class="field"><span class="fieldName"><div class="asIterable List"><span class="typeName">List</span>
+    <ol start="0" class="fields">
+      <li class="fieldValue"><span class="asString String">100</span></li>
+      <li class="fieldValue"><span class="asString String">200</span></li>
+    </ol>
+</div></span> <span class="fieldValue"><div class="asIterable Set"><span class="typeName">Set</span>
+    <ul start="0" class="fields">
+      <li class="fieldValue"><span class="asString String">a</span></li>
+      <li class="fieldValue"><span class="asString String">b</span></li>
+    </ul>
+</div></span></li>
+  <li class="field"><span class="fieldName"><div class="asIterable List"><span class="typeName">List</span>
+    <ol start="0" class="fields">
+      <li class="fieldValue"><span class="asString String">10</span></li>
+      <li class="fieldValue"><span class="asString String">20</span></li>
+    </ol>
+</div></span> <span class="fieldValue"><div class="asIterable Set"><span class="typeName">Set</span>
+    <ul start="0" class="fields">
+      <li class="fieldValue"><span class="asString String">abraca</span></li>
+      <li class="fieldValue"><span class="asString String">dabra</span></li>
+    </ul>
+</div></span></li>
+</ul>
+</div>
+</div>
+<h4>List of Cases</h4>
+<code style="background-color:#F0FFFF;">List(Company(Battle School,Seattle, WA), Company(Command School,Mountain View, CA), Company(Dept of Xenobiology,Lusitania))</code>
+<div>
+<div class="asIterable List"><span class="typeName">List</span>
+<ol start="0" class="fields">
+  <li class="fieldValue"><div class="asProduct Company"><span class="typeName">Company</span>
+    <ul class="fields">
+      <li class="field"><span class="fieldName">name</span> <span class="fieldValue"><span class="asString String">Battle School</span></span></li>
+      <li class="field"><span class="fieldName">address</span> <span class="fieldValue"><span class="asString String">Seattle, WA</span></span></li>
+    </ul>
+</div></li>
+  <li class="fieldValue"><div class="asProduct Company"><span class="typeName">Company</span>
+    <ul class="fields">
+      <li class="field"><span class="fieldName">name</span> <span class="fieldValue"><span class="asString String">Command School</span></span></li>
+      <li class="field"><span class="fieldName">address</span> <span class="fieldValue"><span class="asString String">Mountain View, CA</span></span></li>
+    </ul>
+</div></li>
+  <li class="fieldValue"><div class="asProduct Company"><span class="typeName">Company</span>
+    <ul class="fields">
+      <li class="field"><span class="fieldName">name</span> <span class="fieldValue"><span class="asString String">Dept of Xenobiology</span></span></li>
+      <li class="field"><span class="fieldName">address</span> <span class="fieldValue"><span class="asString String">Lusitania</span></span></li>
+    </ul>
+</div></li>
+</ol>
+</div>
+</div>
+<h4>Set of Nested Cases</h4>
+<code style="background-color:#F0FFFF;">Set(Person(Andrew,Wiggin,ender@intfleet.com,10,Company(Command School,Mountain View, CA)), Person(Hyrum,Graff,graff@intfleet.com,65,Company(Command School,Mountain View, CA)), Person(Ivanova,von Hesse,novinha@xenbio.com,25,Company(Dept of Xenobiology,Lusitania)))</code>
+<div>
+<div class="asIterable Set"><span class="typeName">Set</span>
+<ul start="0" class="fields">
+  <li class="fieldValue"><div class="asProduct Person"><span class="typeName">Person</span>
+    <ul class="fields">
+      <li class="field"><span class="fieldName">first</span> <span class="fieldValue"><span class="asString String">Andrew</span></span></li>
+      <li class="field"><span class="fieldName">last</span> <span class="fieldValue"><span class="asString String">Wiggin</span></span></li>
+      <li class="field"><span class="fieldName">email</span> <span class="fieldValue"><span class="asString String">ender@intfleet.com</span></span></li>
+      <li class="field"><span class="fieldName">age</span> <span class="fieldValue"><span class="asString String">10</span></span></li>
+      <li class="field"><span class="fieldName">employedBy</span> <span class="fieldValue"><div class="asProduct Company"><span class="typeName">Company</span>
+        <ul class="fields">
+          <li class="field"><span class="fieldName">name</span> <span class="fieldValue"><span class="asString String">Command School</span></span></li>
+          <li class="field"><span class="fieldName">address</span> <span class="fieldValue"><span class="asString String">Mountain View, CA</span></span></li>
+        </ul>
+</div></span></li>
+    </ul>
+</div></li>
+  <li class="fieldValue"><div class="asProduct Person"><span class="typeName">Person</span>
+    <ul class="fields">
+      <li class="field"><span class="fieldName">first</span> <span class="fieldValue"><span class="asString String">Hyrum</span></span></li>
+      <li class="field"><span class="fieldName">last</span> <span class="fieldValue"><span class="asString String">Graff</span></span></li>
+      <li class="field"><span class="fieldName">email</span> <span class="fieldValue"><span class="asString String">graff@intfleet.com</span></span></li>
+      <li class="field"><span class="fieldName">age</span> <span class="fieldValue"><span class="asString String">65</span></span></li>
+      <li class="field"><span class="fieldName">employedBy</span> <span class="fieldValue"><div class="asProduct Company"><span class="typeName">Company</span>
+        <ul class="fields">
+          <li class="field"><span class="fieldName">name</span> <span class="fieldValue"><span class="asString String">Command School</span></span></li>
+          <li class="field"><span class="fieldName">address</span> <span class="fieldValue"><span class="asString String">Mountain View, CA</span></span></li>
+        </ul>
+</div></span></li>
+    </ul>
+</div></li>
+  <li class="fieldValue"><div class="asProduct Person"><span class="typeName">Person</span>
+    <ul class="fields">
+      <li class="field"><span class="fieldName">first</span> <span class="fieldValue"><span class="asString String">Ivanova</span></span></li>
+      <li class="field"><span class="fieldName">last</span> <span class="fieldValue"><span class="asString String">von Hesse</span></span></li>
+      <li class="field"><span class="fieldName">email</span> <span class="fieldValue"><span class="asString String">novinha@xenbio.com</span></span></li>
+      <li class="field"><span class="fieldName">age</span> <span class="fieldValue"><span class="asString String">25</span></span></li>
+      <li class="field"><span class="fieldName">employedBy</span> <span class="fieldValue"><div class="asProduct Company"><span class="typeName">Company</span>
+        <ul class="fields">
+          <li class="field"><span class="fieldName">name</span> <span class="fieldValue"><span class="asString String">Dept of Xenobiology</span></span></li>
+          <li class="field"><span class="fieldName">address</span> <span class="fieldValue"><span class="asString String">Lusitania</span></span></li>
+        </ul>
+</div></span></li>
+    </ul>
+</div></li>
+</ul>
+</div>
+</div>
+<h4>Map of Cases to list of Nested Cases</h4>
+<code style="background-color:#F0FFFF;">Map(Company(Command School,Mountain View, CA) -> List(Person(Andrew,Wiggin,ender@intfleet.com,10,Company(Command School,Mountain View, CA)), Person(Hyrum,Graff,graff@intfleet.com,65,Company(Command School,Mountain View, CA))), Company(Dept of Xenobiology,Lusitania) -> List(Person(Ivanova,von Hesse,novinha@xenbio.com,25,Company(Dept of Xenobiology,Lusitania))))</code>
+<div>
+<div class="asMap Map"><span class="typeName">Map</span>
+<ul class="fields">
+  <li class="field"><span class="fieldName"><div class="asProduct Company"><span class="typeName">Company</span>
+    <ul class="fields">
+      <li class="field"><span class="fieldName">name</span> <span class="fieldValue"><span class="asString String">Command School</span></span></li>
+      <li class="field"><span class="fieldName">address</span> <span class="fieldValue"><span class="asString String">Mountain View, CA</span></span></li>
+    </ul>
+</div></span> <span class="fieldValue"><div class="asIterable List"><span class="typeName">List</span>
+    <ol start="0" class="fields">
+      <li class="fieldValue"><div class="asProduct Person"><span class="typeName">Person</span>
+        <ul class="fields">
+          <li class="field"><span class="fieldName">first</span> <span class="fieldValue"><span class="asString String">Andrew</span></span></li>
+          <li class="field"><span class="fieldName">last</span> <span class="fieldValue"><span class="asString String">Wiggin</span></span></li>
+          <li class="field"><span class="fieldName">email</span> <span class="fieldValue"><span class="asString String">ender@intfleet.com</span></span></li>
+          <li class="field"><span class="fieldName">age</span> <span class="fieldValue"><span class="asString String">10</span></span></li>
+          <li class="field"><span class="fieldName">employedBy</span> <span class="fieldValue"><div class="asProduct Company"><span class="typeName">Company</span>
+            <ul class="fields">
+              <li class="field"><span class="fieldName">name</span> <span class="fieldValue"><span class="asString String">Command School</span></span></li>
+              <li class="field"><span class="fieldName">address</span> <span class="fieldValue"><span class="asString String">Mountain View, CA</span></span></li>
+            </ul>
+</div></span></li>
+        </ul>
+</div></li>
+      <li class="fieldValue"><div class="asProduct Person"><span class="typeName">Person</span>
+        <ul class="fields">
+          <li class="field"><span class="fieldName">first</span> <span class="fieldValue"><span class="asString String">Hyrum</span></span></li>
+          <li class="field"><span class="fieldName">last</span> <span class="fieldValue"><span class="asString String">Graff</span></span></li>
+          <li class="field"><span class="fieldName">email</span> <span class="fieldValue"><span class="asString String">graff@intfleet.com</span></span></li>
+          <li class="field"><span class="fieldName">age</span> <span class="fieldValue"><span class="asString String">65</span></span></li>
+          <li class="field"><span class="fieldName">employedBy</span> <span class="fieldValue"><div class="asProduct Company"><span class="typeName">Company</span>
+            <ul class="fields">
+              <li class="field"><span class="fieldName">name</span> <span class="fieldValue"><span class="asString String">Command School</span></span></li>
+              <li class="field"><span class="fieldName">address</span> <span class="fieldValue"><span class="asString String">Mountain View, CA</span></span></li>
+            </ul>
+</div></span></li>
+        </ul>
+</div></li>
+    </ol>
+</div></span></li>
+  <li class="field"><span class="fieldName"><div class="asProduct Company"><span class="typeName">Company</span>
+    <ul class="fields">
+      <li class="field"><span class="fieldName">name</span> <span class="fieldValue"><span class="asString String">Dept of Xenobiology</span></span></li>
+      <li class="field"><span class="fieldName">address</span> <span class="fieldValue"><span class="asString String">Lusitania</span></span></li>
+    </ul>
+</div></span> <span class="fieldValue"><div class="asIterable List"><span class="typeName">List</span>
+    <ol start="0" class="fields">
+      <li class="fieldValue"><div class="asProduct Person"><span class="typeName">Person</span>
+        <ul class="fields">
+          <li class="field"><span class="fieldName">first</span> <span class="fieldValue"><span class="asString String">Ivanova</span></span></li>
+          <li class="field"><span class="fieldName">last</span> <span class="fieldValue"><span class="asString String">von Hesse</span></span></li>
+          <li class="field"><span class="fieldName">email</span> <span class="fieldValue"><span class="asString String">novinha@xenbio.com</span></span></li>
+          <li class="field"><span class="fieldName">age</span> <span class="fieldValue"><span class="asString String">25</span></span></li>
+          <li class="field"><span class="fieldName">employedBy</span> <span class="fieldValue"><div class="asProduct Company"><span class="typeName">Company</span>
+            <ul class="fields">
+              <li class="field"><span class="fieldName">name</span> <span class="fieldValue"><span class="asString String">Dept of Xenobiology</span></span></li>
+              <li class="field"><span class="fieldName">address</span> <span class="fieldValue"><span class="asString String">Lusitania</span></span></li>
+            </ul>
+</div></span></li>
+        </ul>
+</div></li>
+    </ol>
+</div></span></li>
+</ul>
+</div>
+</div>
+</div></div></body></html>
