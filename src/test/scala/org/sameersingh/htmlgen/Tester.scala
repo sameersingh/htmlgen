@@ -22,9 +22,9 @@ class Tester(c: Converter) {
 
 
   def print(a: Any, dataType: String): String = {
-    wrap(dataType, "h4") +
-      ("<code style=\"background-color:#F0FFFF;\">%s</code>" format (a.toString)) +
-      wrap(a.source, "div")
+    wrap(dataType, "h4") + "\n" +
+      ("<code style=\"background-color:#F0FFFF;\">%s</code>" format (a.toString)) + "\n" +
+      ("<div>\n%s\n</div>" format a.source) + "\n"
   }
 
   def basic: String = {

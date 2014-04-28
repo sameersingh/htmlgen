@@ -46,5 +46,13 @@ object StringConverter extends Converter {
 }
 
 class Convertable(a: Any, c: Converter) {
-  def toHTML: HTML = c.convert(a)
+  def asHTML: HTML = c.convert(a)
+
+  def asTable: HTML = TableConverter.convert(a)
+
+  def asList: HTML = ListConverter.convert(a)
+
+  def asString: HTML = StringConverter.convert(a)
+
+  def asDivs: HTML = DivConverter.convert(a)
 }
