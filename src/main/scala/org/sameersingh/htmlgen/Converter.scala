@@ -50,11 +50,21 @@ object StringConverter extends Converter {
 class Convertable(a: Any, c: Converter) {
   def asHTML: HTML = c.convert(a)
 
+  def asHTML(overriden: PartialFunction[Any, String]): HTML = c.convert(a, overriden = overriden)
+
   def asTable: HTML = TableConverter.convert(a)
+
+  def asTable(overriden: PartialFunction[Any, String]): HTML = TableConverter.convert(a, overriden = overriden)
 
   def asList: HTML = ListConverter.convert(a)
 
+  def asList(overriden: PartialFunction[Any, String]): HTML = ListConverter.convert(a, overriden = overriden)
+
   def asString: HTML = StringConverter.convert(a)
 
+  def asString(overriden: PartialFunction[Any, String]): HTML = StringConverter.convert(a, overriden = overriden)
+
   def asDivs: HTML = DivConverter.convert(a)
+
+  def asDivs(overriden: PartialFunction[Any, String]): HTML = DivConverter.convert(a, overriden = overriden)
 }
