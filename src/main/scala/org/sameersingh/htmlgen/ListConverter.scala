@@ -10,23 +10,23 @@ class ListConverter extends Converter {
 
   def string(str: String, indentLevel: Int = 0): HTML = RawHTML(indent(indentLevel) + "<code>" + str + "</code>\n")
 
-  def map(m: scala.collection.Map[Any, Any], indentLevel: Int = 0): HTML = {
+  def map(m: scala.collection.Map[Any, Any], indentLevel: Int = 0, overriden: PartialFunction[Any, String] = Map.empty): HTML = {
     val sb = new StringBuffer()
     sb append (wrap(m.stringPrefix, "span", propertyClass) + "\n")
     sb append (indent(indentLevel) + "<ul>\n")
     for ((k, v) <- m) {
       sb append (indent(indentLevel + 1)
         + "<li>"
-        + wrap(convert(k, indentLevel + 2).source, "span", propertyClass)
+        + wrap(convert(k, indentLevel + 2, overriden).source, "span", propertyClass)
         + " &#8594; "
-        + wrap(convert(v, indentLevel + 2).source, "span")
+        + wrap(convert(v, indentLevel + 2, overriden).source, "span")
         + "</li>\n")
     }
     sb append (indent(indentLevel) + "</ul>\n")
     RawHTML(sb.toString)
   }
 
-  def iterable(i: Iterable[Any], indentLevel: Int): HTML = {
+  def iterable(i: Iterable[Any], indentLevel: Int, overriden: PartialFunction[Any, String] = Map.empty): HTML = {
     val ordered = (i.isInstanceOf[Seq[Any]])
     val listType = if (ordered) "ol" else "ul"
     val sb = new StringBuffer()
@@ -35,14 +35,14 @@ class ListConverter extends Converter {
     var idx = 0
     for (item <- i) {
       sb append (indent(indentLevel + 1)
-        + wrap(convert(item, indentLevel + 2).source, "li"))
+        + wrap(convert(item, indentLevel + 2, overriden).source, "li"))
       idx += 1
     }
     sb append (indent(indentLevel) + "</" + listType + ">\n")
     RawHTML(sb.toString)
   }
 
-  def product(p: Product, indentLevel: Int): HTML = {
+  def product(p: Product, indentLevel: Int, overriden: PartialFunction[Any, String] = Map.empty): HTML = {
     val sb = new StringBuffer()
     sb append wrap(p.productPrefix, "span", propertyClass)
     val fields = p.getClass.getDeclaredFields
@@ -52,7 +52,7 @@ class ListConverter extends Converter {
       sb append (indent(indentLevel + 1)
         + "<li>"
         + wrap(f.getName, "span", propertyClass) + ": "
-        + convert(f.get(p), indentLevel + 2).source
+        + convert(f.get(p), indentLevel + 2, overriden).source
         + "</li>\n")
     }
     sb append (indent(indentLevel) + "</ul>\n")

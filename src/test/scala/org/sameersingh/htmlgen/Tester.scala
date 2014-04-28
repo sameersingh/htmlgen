@@ -14,7 +14,8 @@ class Tester(c: Converter) {
       "\n<hr>\n" + wrap("Basic", "h3") + wrap(basic, "div") +
         "\n<hr>\n" + wrap("Iterables", "h3") + wrap(iterables, "div") +
         "\n<hr>\n" + wrap("Products", "h3") + wrap(products, "div") +
-        "\n<hr>\n" + wrap("Hybrid", "h3") + wrap(hybrid, "div")
+        "\n<hr>\n" + wrap("Hybrid", "h3") + wrap(hybrid, "div") +
+    "\n<hr>\n" + wrap("Misc", "h3") + wrap(misc, "div")
       , "div")
     val html = htmlWrap(body)
     writeFile(filename, html)
@@ -74,6 +75,21 @@ class Tester(c: Converter) {
     sb append print(List(c1, c2, c3), "List of Cases")
     sb append print(Set(p1, p2, p3), "Set of Nested Cases")
     sb append print(Map(c2 -> List(p1, p2), c3 -> List(p3)), "Map of Cases to list of Nested Cases")
+    sb.toString
+  }
+
+  def misc: String = {
+    val sb = new StringBuffer()
+    val company = Company("Battle School", "Seattle, WA")
+    val person = Person("Andrew", "Wiggin", "ender@intfleet.com", 65, company)
+    sb append (wrap("Override Case", "h4") + "\n" +
+      ("<code style=\"background-color:#F0FFFF;\">%s</code>" format (company.toString)) + "\n" +
+      ("<div>\n%s\n</div>" format c.convert(company, overriden = { case c: Company => c.toString }).source) + "\n"
+      )
+    sb append (wrap("Override Case (Nested)", "h4") + "\n" +
+      ("<code style=\"background-color:#F0FFFF;\">%s</code>" format (person.toString)) + "\n" +
+      ("<div>\n%s\n</div>" format c.convert(person, overriden = { case c: Company => c.toString }).source) + "\n"
+      )
     sb.toString
   }
 }

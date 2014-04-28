@@ -23,7 +23,7 @@ class DivConverter extends Converter {
   val fieldName = "fieldName"
   val fieldValue = "fieldValue"
 
-  override def iterable(i: Iterable[Any], indentLevel: Int): HTML = {
+  override def iterable(i: Iterable[Any], indentLevel: Int, overriden: PartialFunction[Any, String] = Map.empty): HTML = {
     val ordered = (i.isInstanceOf[Seq[Any]])
     val listType = if (ordered) "ol" else "ul"
     RawHTML(
@@ -34,7 +34,7 @@ class DivConverter extends Converter {
         var idx = 0
         for (item <- i) {
           sb append (indent(indentLevel + 1)
-            + wrap(convert(item, indentLevel + 2).source, "li", fieldValue) + "\n")
+            + wrap(convert(item, indentLevel + 2, overriden).source, "li", fieldValue) + "\n")
           idx += 1
         }
         sb append (indent(indentLevel) + "</" + listType + ">\n")
@@ -42,7 +42,7 @@ class DivConverter extends Converter {
       }, "div", iterableClass + " " + i.stringPrefix))
   }
 
-  def product(p: Product, indentLevel: Int): HTML = {
+  def product(p: Product, indentLevel: Int, overriden: PartialFunction[Any, String] = Map.empty): HTML = {
     RawHTML(
       wrap({
         val sb = new StringBuffer()
@@ -55,7 +55,7 @@ class DivConverter extends Converter {
             + "<li class=\"" + field + "\">"
             + wrap(f.getName, "span", fieldName)
             + " "
-            + wrap(convert(f.get(p), indentLevel + 2).source, "span", fieldValue)
+            + wrap(convert(f.get(p), indentLevel + 2, overriden).source, "span", fieldValue)
             + "</li>\n")
         }
         sb append (indent(indentLevel) + "</ul>\n")
@@ -63,7 +63,7 @@ class DivConverter extends Converter {
       }, "div", productClass + " " + p.productPrefix))
   }
 
-  def map(m: scala.collection.Map[Any, Any], indentLevel: Int = 0): HTML = {
+  def map(m: scala.collection.Map[Any, Any], indentLevel: Int = 0, overriden: PartialFunction[Any, String] = Map.empty): HTML = {
     RawHTML(wrap({
       val sb = new StringBuffer()
       sb append (wrap(m.stringPrefix, "span", typeName) + "\n")
@@ -71,9 +71,9 @@ class DivConverter extends Converter {
       for ((k, v) <- m) {
         sb append (indent(indentLevel + 1)
           + "<li class=\"" + field + "\">"
-          + wrap(convert(k, indentLevel + 2).source, "span", fieldName)
+          + wrap(convert(k, indentLevel + 2, overriden).source, "span", fieldName)
           + " " //" &#8594; "
-          + wrap(convert(v, indentLevel + 2).source, "span", fieldValue)
+          + wrap(convert(v, indentLevel + 2, overriden).source, "span", fieldValue)
           + "</li>\n")
       }
       sb append (indent(indentLevel) + "</ul>\n")
