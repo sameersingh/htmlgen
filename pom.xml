@@ -125,8 +125,8 @@
     </plugins>
   </build>
   <scm>
-    <connection>scm:git:git@github.com:sameersingh/htmlgen.git</connection>
-    <url>scm:git:git@github.com:sameersingh/htmlgen.git</url>
-    <developerConnection>scm:git:git@github.com:sameersingh.htmlgen.git</developerConnection>
+    <url>https://github.com/sameersingh/htmlgen</url>
+    <connection>scm:git:git://github.com/sameersingh/htmlgen.git</connection>
+    <developerConnection>scm:git:git@github.com:sameersingh/htmlgen.git</developerConnection>
   </scm>
 </project>
