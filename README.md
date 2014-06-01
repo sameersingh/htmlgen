@@ -3,6 +3,39 @@ htmlgen
 
 Write browser-friendly output for various data structures.
 
+# Basic Usage
+
+This library contains implicit conversion of any data structure into HTML source, where the format depends on which classes were imported. For example, the following code:
+
+```scala
+import org.sameersingh.htmlgen.HTML
+import org.sameersingh.htmlgen.DivConverter.Implicits._
+
+val html: HTML = Map(List(1,2) -> "string", Set(3,4) -> 1e5)
+
+println(html.source)
+```
+produces
+```html
+<div class="asMap Map"><span class="typeName">Map</span>
+<ul class="fields">
+  <li class="field"><span class="fieldName"><div class="asIterable List"><span class="typeName">List</span>
+    <ol start="0" class="fields">
+      <li class="fieldValue"><span class="asString String">1</span></li>
+      <li class="fieldValue"><span class="asString String">2</span></li>
+    </ol>
+</div></span> <span class="fieldValue"><span class="asString String">string</span></span></li>
+  <li class="field"><span class="fieldName"><div class="asIterable Set"><span class="typeName">Set</span>
+    <ul start="0" class="fields">
+      <li class="fieldValue"><span class="asString String">3</span></li>
+      <li class="fieldValue"><span class="asString String">4</span></li>
+    </ul>
+</div></span> <span class="fieldValue"><span class="asString String">100000.0</span></span></li>
+</ul>
+</div>
+```
+You can replace `DivConverter` with other converters such as `TableConverter`, `ListConverter` and so on.
+
 # Status
 
 Data structures
