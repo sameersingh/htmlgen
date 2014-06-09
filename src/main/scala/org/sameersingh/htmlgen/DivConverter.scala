@@ -1,6 +1,7 @@
 package org.sameersingh.htmlgen
 
 import scala.collection.Map
+import org.sameersingh.scalaplot.XYChart
 
 /**
  * @author sameer
@@ -22,6 +23,17 @@ class DivConverter extends Converter {
   val field = "field"
   val fieldName = "fieldName"
   val fieldValue = "fieldValue"
+
+  override def chart(c: XYChart, indentLevel: Int): HTML = {
+    import org.sameersingh.scalaplot.gnuplot.GnuplotPlotter
+    val file = java.io.File.createTempFile("example1", "pdf")
+    file.delete()
+    file.mkdir()
+    println(file.getCanonicalPath)
+    // new JFGraphPlotter(chart).writeToPdf(file)
+    val gpl = new GnuplotPlotter(c)
+    RawHTML("<pre>" + gpl.html(file.getCanonicalPath + "/", "test") + "</pre>")
+  }
 
   override def iterable(i: Iterable[Any], indentLevel: Int, overriden: PartialFunction[Any, String] = Map.empty): HTML = {
     val ordered = (i.isInstanceOf[Seq[Any]])

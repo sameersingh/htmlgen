@@ -1,6 +1,7 @@
 package org.sameersingh.htmlgen
 
 import scala.collection
+import org.sameersingh.scalaplot.XYChart
 
 /**
  * @author sameer
@@ -18,8 +19,11 @@ trait Converter {
       case m: scala.collection.Map[Any, Any] => map(m, indentLevel, overriden)
       case i: Iterable[Any] => iterable(i, indentLevel, overriden)
       case p: Product => product(p, indentLevel, overriden)
+      case c: XYChart => chart(c, indentLevel)
       case _ => string(a.toString, indentLevel)
     }
+
+  def chart(c: XYChart, indentLevel: Int = 0): HTML = string("Plots not supported.")
 
   def string(a: String, indentLevel: Int = 0): HTML
 

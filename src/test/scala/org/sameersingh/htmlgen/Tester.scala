@@ -15,7 +15,8 @@ class Tester(c: Converter) {
         "\n<hr>\n" + wrap("Iterables", "h3") + wrap(iterables, "div") +
         "\n<hr>\n" + wrap("Products", "h3") + wrap(products, "div") +
         "\n<hr>\n" + wrap("Hybrid", "h3") + wrap(hybrid, "div") +
-    "\n<hr>\n" + wrap("Misc", "h3") + wrap(misc, "div")
+        "\n<hr>\n" + wrap("Misc", "h3") + wrap(misc, "div") +
+        "\n<hr>\n" + wrap("Plots", "h3") + wrap(plots, "div")
       , "div")
     val html = htmlWrap(body)
     writeFile(filename, html)
@@ -84,11 +85,30 @@ class Tester(c: Converter) {
     val person = Person("Andrew", "Wiggin", "ender@intfleet.com", 65, company)
     sb append (wrap("Override Case", "h4") + "\n" +
       ("<code style=\"background-color:#F0FFFF;\">%s</code>" format (company.toString)) + "\n" +
-      ("<div>\n%s\n</div>" format c.convert(company, overriden = { case c: Company => c.toString }).source) + "\n"
+      ("<div>\n%s\n</div>" format c.convert(company, overriden = {
+        case c: Company => c.toString
+      }).source) + "\n"
       )
     sb append (wrap("Override Case (Nested)", "h4") + "\n" +
       ("<code style=\"background-color:#F0FFFF;\">%s</code>" format (person.toString)) + "\n" +
-      ("<div>\n%s\n</div>" format c.convert(person, overriden = { case c: Company => c.toString }).source) + "\n"
+      ("<div>\n%s\n</div>" format c.convert(person, overriden = {
+        case c: Company => c.toString
+      }).source) + "\n"
+      )
+    sb.toString
+  }
+
+  def plots: String = {
+    import org.sameersingh.scalaplot.Implicits._
+    val x = (1 until 100).map(_.toDouble)
+    val y1 = (1 until 100).map(j => math.pow(j, 1))
+    val y2 = (1 until 100).map(j => math.pow(j, 2))
+    val y3 = (1 until 100).map(j => math.pow(j, 3))
+    val p = plot(x -> Y(y1, "Linear") :: x -> Y(y2, "Square") :: x -> Y(y3, "Cube") :: List(), title = "Powers!", y = Axis(log = true), showLegend = true)
+    val sb = new StringBuffer()
+    sb append (wrap("Plots", "h4") + "\n" +
+      ("<code style=\"background-color:#F0FFFF;\">%s</code>" format (p)) + "\n" +
+      ("<div>\n%s\n</div>" format c.convert(p).source) + "\n"
       )
     sb.toString
   }

@@ -50,7 +50,13 @@
       <version>${scala.version}</version>
     </dependency>
 
-    <!-- Test -->
+    <dependency>
+      <groupId>org.sameersingh.scalaplot</groupId>
+      <artifactId>scalaplot</artifactId>
+      <version>0.1-SNAPSHOT</version>
+    </dependency>
+
+      <!-- Test -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
