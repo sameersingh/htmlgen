@@ -26,13 +26,13 @@ class DivConverter extends Converter {
 
   override def chart(c: XYChart, indentLevel: Int): HTML = {
     import org.sameersingh.scalaplot.gnuplot.GnuplotPlotter
-    val file = java.io.File.createTempFile("example1", "pdf")
+    val file = java.io.File.createTempFile("moro-plots", System.currentTimeMillis().toString)
     file.delete()
     file.mkdir()
     println(file.getCanonicalPath)
     // new JFGraphPlotter(chart).writeToPdf(file)
     val gpl = new GnuplotPlotter(c)
-    RawHTML("<pre>" + gpl.html(file.getCanonicalPath + "/", "test") + "</pre>")
+    RawHTML(gpl.svg(file.getCanonicalPath + "/", "plot") + "<a href=\"%s\">Source</a>" format(file.getCanonicalPath + "/plot.gpl"))
   }
 
   override def iterable(i: Iterable[Any], indentLevel: Int, overriden: PartialFunction[Any, String] = Map.empty): HTML = {

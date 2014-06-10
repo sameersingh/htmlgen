@@ -42,6 +42,8 @@ trait Converter {
 }
 
 object StringConverter extends Converter {
+  override def chart(c: XYChart, indentLevel: Int): HTML = super.chart(c, indentLevel)
+
   override def iterable(a: Iterable[Any], indentLevel: Int, overriden: PartialFunction[Any, String] = Map.empty): HTML = RawHTML(a.toString)
 
   override def product(a: Product, indentLevel: Int, overriden: PartialFunction[Any, String] = Map.empty): HTML = RawHTML(a.toString)

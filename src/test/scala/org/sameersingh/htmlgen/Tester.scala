@@ -100,15 +100,20 @@ class Tester(c: Converter) {
 
   def plots: String = {
     import org.sameersingh.scalaplot.Implicits._
-    val x = (1 until 100).map(_.toDouble)
-    val y1 = (1 until 100).map(j => math.pow(j, 1))
-    val y2 = (1 until 100).map(j => math.pow(j, 2))
-    val y3 = (1 until 100).map(j => math.pow(j, 3))
-    val p = plot(x -> Y(y1, "Linear") :: x -> Y(y2, "Square") :: x -> Y(y3, "Cube") :: List(), title = "Powers!", y = Axis(log = true), showLegend = true)
+    val x = (1 until 10).map(_.toDouble)
+    val y1 = x.map(j => math.pow(j, 1))
+    val y2 = x.map(j => math.pow(j, 2))
+    val y3 = x.map(j => math.pow(j, 3))
+    val p1 = plot(x -> Y(y1, "Linear") :: x -> Y(y2, "Square") :: x -> Y(y3, "Cube") :: List(), title = "Powers!", y = Axis(log = true), showLegend = true)
+    val p2 = plot(x -> Y(y1, "x") :: x -> Y(y2, "x^2") :: x -> Y(y3, "x^3") :: List(), title = "Powers!", y = Axis(log = true), showLegend = true)
     val sb = new StringBuffer()
     sb append (wrap("Plots", "h4") + "\n" +
-      ("<code style=\"background-color:#F0FFFF;\">%s</code>" format (p)) + "\n" +
-      ("<div>\n%s\n</div>" format c.convert(p).source) + "\n"
+      ("<code style=\"background-color:#F0FFFF;\">%s</code>" format (p1)) + "\n" +
+      ("<div>\n%s\n</div>" format c.convert(p1).source) + "\n"
+      )
+    sb append (wrap("Plots", "h4") + "\n" +
+      ("<code style=\"background-color:#F0FFFF;\">%s</code>" format (p2)) + "\n" +
+      ("<div>\n%s\n</div>" format c.convert(p2).source) + "\n"
       )
     sb.toString
   }
