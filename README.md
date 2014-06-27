@@ -34,7 +34,11 @@ produces
 </ul>
 </div>
 ```
+
+These `divs` and `spans` can be customized to a great detail using CSS, since class attributes are named using the Scala classes.
+
 You can replace `DivConverter` with other converters such as `TableConverter`, `ListConverter` and so on.
+
 
 # Status
 
@@ -43,7 +47,7 @@ Data structures
 - [x] Iterables
 - [x] Maps
 - [x] Product and Case classes
-- [ ] Line Plots
+- [x] Line Plots (using [scalaplot](http://sameersingh.org/scalaplot/))
 - [ ] Histograms
 - [ ] Pie charts
 - [ ] Graphs
@@ -78,7 +82,7 @@ Consider the following Scala snippet:
 
 ### toString
 
-A simple "toString" looks like the following:
+`StringConverter` calls `toString` on the objects, i.e. looks like the following:
 
 ```
 Map(Company(Command School,Mountain View, CA) -> List(Person(Andrew,Wiggin,ender@intfleet.com,10,Company(Command School,Mountain View, CA)), Person(Hyrum,Graff,graff@intfleet.com,65,Company(Command School,Mountain View, CA))), Company(Dept of Xenobiology,Lusitania) -> List(Person(Ivanova,von Hesse,novinha@xenbio.com,25,Company(Dept of Xenobiology,Lusitania))))
