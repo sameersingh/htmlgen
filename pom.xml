@@ -61,7 +61,7 @@
     <dependency>
       <groupId>org.sameersingh.scalaplot</groupId>
       <artifactId>scalaplot</artifactId>
-      <version>0.0.2</version>
+      <version>0.0.3</version>
     </dependency>
 
     <!-- Test -->
@@ -98,6 +98,12 @@
           <scalaVersion>${scala.version}</scalaVersion>
         </configuration>
         <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>doc-jar</goal>
+            </goals>
+          </execution>
           <execution>
             <goals>
               <goal>compile</goal>
