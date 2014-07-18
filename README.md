@@ -1,5 +1,6 @@
 htmlgen
 =======
+[![Build Status](https://travis-ci.org/sameersingh/htmlgen.svg?branch=htmlgen-0.1)](https://travis-ci.org/sameersingh/htmlgen)
 
 Write browser-friendly output for various data structures.
 
