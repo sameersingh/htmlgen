@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.sameersingh.htmlgen</groupId>
   <artifactId>htmlgen</artifactId>
@@ -6,6 +7,27 @@
   <name>${project.artifactId}</name>
   <description>Library for printing browser-friendly output for basic data structures</description>
   <inceptionYear>2014</inceptionYear>
+  <url>http://www.sameersingh.org/htmlgen</url>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <name>Sameer Singh</name>
+      <email>sameeersingh@gmail.com</email>
+      <organization>University of Washington</organization>
+      <organizationUrl>http://www.sameersingh.org</organizationUrl>
+    </developer>
+  </developers>
+  <scm>
+    <url>https://github.com/sameersingh/htmlgen</url>
+    <connection>scm:git:git://github.com/sameersingh/htmlgen.git</connection>
+    <developerConnection>scm:git:git@github.com:sameersingh/htmlgen.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
 
   <properties>
     <maven.compiler.source>1.5</maven.compiler.source>
@@ -19,19 +41,6 @@
       <id>scala-tools.org</id>
       <name>Scala-Tools Maven2 Repository</name>
       <url>http://scala-tools.org/repo-releases</url>
-    </repository>
-    <repository>
-      <id>sameer-releases</id>
-      <name>Sameer repository</name>
-      <url>https://github.com/sameersingh/maven-repo/raw/master/releases</url>
-    </repository>
-    <repository>
-      <id>sameer-snapshots</id>
-      <name>Sameer repository</name>
-      <url>https://github.com/sameersingh/maven-repo/raw/master/snapshots</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
     </repository>
   </repositories>
 
@@ -53,10 +62,10 @@
     <dependency>
       <groupId>org.sameersingh.scalaplot</groupId>
       <artifactId>scalaplot</artifactId>
-      <version>0.1-SNAPSHOT</version>
+      <version>0.0.2</version>
     </dependency>
 
-      <!-- Test -->
+    <!-- Test -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -66,16 +75,14 @@
   </dependencies>
 
   <distributionManagement>
-    <repository>
-      <id>dev-iesl.cs.umass.edu</id>
-      <name>IESL Nexus repostory</name>
-      <url>https://dev-iesl.cs.umass.edu/nexus/content/repositories/releases</url>
-    </repository>
     <snapshotRepository>
-      <id>dev-iesl.cs.umass.edu</id>
-      <name>IESL Nexus repostory</name>
-      <url>https://dev-iesl.cs.umass.edu/nexus/content/repositories/snapshots</url>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
   </distributionManagement>
 
   <build>
@@ -127,12 +134,44 @@
         <artifactId>maven-release-plugin</artifactId>
         <version>2.5</version>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>1.5</version>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.3</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.9.1</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
-  <scm>
-    <url>https://github.com/sameersingh/htmlgen</url>
-    <connection>scm:git:git://github.com/sameersingh/htmlgen.git</connection>
-    <developerConnection>scm:git:git@github.com:sameersingh/htmlgen.git</developerConnection>
-    <tag>HEAD</tag>
-  </scm>
 </project>
