@@ -1,5 +1,7 @@
 package org.sameersingh.htmlgen
 
+import org.sameersingh.htmlgen.Custom.Matrix
+
 /**
  * @author sameer
  * @since 4/24/14.
@@ -9,6 +11,27 @@ class TableConverter extends Converter {
   import ConverterUtils._
 
   def string(str: String, indentLevel: Int = 0): HTML = RawHTML(indent(indentLevel) + "<code>" + str + "</code>\n")
+
+
+  override def matrix[M](m: Matrix[M], indentLevel: Int): HTML = {
+    val sb = new StringBuilder
+    sb.append(indent(indentLevel) + "<table>\n")
+    val cells = m.data.map(_.map(m extr _)).flatten
+    val min = cells.min
+    val max = cells.max
+    def color(d: Double) = (255-255*((d-min)/(max-min))).toInt
+    for(i <- 0 until m.rows) {
+      sb.append(indent(indentLevel+1) + "<tr>\n")
+      for(j <- 0 until m.cols) {
+        val c = color(m.cell(i,j))
+        sb.append(indent(indentLevel+2) + "<th style=\"background-color:rgb(%d,%d,%d)\"/>\n" format(c,c,c))
+
+      }
+      sb.append(indent(indentLevel+1) + "</tr>\n")
+    }
+    sb.append(indent(indentLevel) + "</table>\n")
+    RawHTML(sb.mkString)
+  }
 
   def map(m: scala.collection.Map[Any, Any], indentLevel: Int = 0, overriden: PartialFunction[Any, String] = Map.empty): HTML = {
     val sb = new StringBuffer()

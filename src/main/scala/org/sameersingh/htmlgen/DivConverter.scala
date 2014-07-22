@@ -2,6 +2,7 @@ package org.sameersingh.htmlgen
 
 import scala.collection.Map
 import org.sameersingh.scalaplot.XYChart
+import org.sameersingh.htmlgen.Custom.Matrix
 
 /**
  * @author sameer
@@ -23,6 +24,26 @@ class DivConverter extends Converter {
   val field = "field"
   val fieldName = "fieldName"
   val fieldValue = "fieldValue"
+
+  override def matrix[M](m: Matrix[M], indentLevel: Int): HTML = {
+    val sb = new StringBuilder
+    sb.append(indent(indentLevel) + "<div class=\"matrix\">\n")
+    val cells = m.data.map(_.map(m extr _)).flatten
+    val min = cells.min
+    val max = cells.max
+    val dim = 100.0/math.max(m.cols, m.rows)
+    def opacity(d: Double) = (d-min)/(max-min)
+    for(i <- 0 until m.rows) {
+      sb.append(indent(indentLevel+1) + "<div class=\"row\">\n")
+      for(j <- 0 until m.cols) {
+        val c = opacity(m.cell(i,j))
+        sb.append(indent(indentLevel+2) + "<div class=\"cell\" style=\"opacity:%f;width:%f%%;height:%f%%\"></div>\n" format(c, dim, dim))
+      }
+      sb.append(indent(indentLevel+1) + "</div>\n")
+    }
+    sb.append(indent(indentLevel) + "</div>\n")
+    RawHTML(sb.mkString)
+  }
 
   override def chart(c: XYChart, indentLevel: Int): HTML = {
     import org.sameersingh.scalaplot.gnuplot.GnuplotPlotter

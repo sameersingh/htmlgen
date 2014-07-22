@@ -61,3 +61,19 @@ pre {
   background-color:#666666;
 }
 
+div.matrix {
+  padding: 10px;
+  width:250px;
+  height:250px;
+}
+
+div.row {
+  clear: both;
+}
+
+div.cell {
+  width: 15px;
+  height: 15px;
+  float:left;
+  background-color: black;
+}

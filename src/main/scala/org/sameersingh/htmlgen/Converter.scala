@@ -2,6 +2,7 @@ package org.sameersingh.htmlgen
 
 import scala.collection
 import org.sameersingh.scalaplot.XYChart
+import org.sameersingh.htmlgen.Custom.Matrix
 
 /**
  * @author sameer
@@ -16,12 +17,15 @@ trait Converter {
     if (maxIndent <= indentLevel) string("...")
     else if (overriden.isDefinedAt(a)) RawHTML(overriden(a))
     else a match {
+      case c: XYChart => chart(c, indentLevel)
+      case mat: Matrix[_] => matrix(mat)
       case m: scala.collection.Map[Any, Any] => map(m, indentLevel, overriden)
       case i: Iterable[Any] => iterable(i, indentLevel, overriden)
       case p: Product => product(p, indentLevel, overriden)
-      case c: XYChart => chart(c, indentLevel)
       case _ => string(a.toString, indentLevel)
     }
+
+  def matrix[M](m: Matrix[M], indentLevel: Int = 0): HTML = string("Matrix not supported.")
 
   def chart(c: XYChart, indentLevel: Int = 0): HTML = string("Plots not supported.")
 
@@ -42,6 +46,10 @@ trait Converter {
 }
 
 object StringConverter extends Converter {
+  import ConverterUtils._
+
+  override def matrix[M](m: Matrix[M], indentLevel: Int): HTML = RawHTML(wrap(m.data.map(_.map(d => m.extr(d)).mkString("\t")).mkString("\n"), "pre"))
+
   override def chart(c: XYChart, indentLevel: Int): HTML = super.chart(c, indentLevel)
 
   override def iterable(a: Iterable[Any], indentLevel: Int, overriden: PartialFunction[Any, String] = Map.empty): HTML = RawHTML(a.toString)

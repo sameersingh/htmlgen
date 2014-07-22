@@ -1,5 +1,7 @@
 package org.sameersingh.htmlgen
 
+import org.sameersingh.htmlgen.Custom.Matrix
+
 /**
  * @author sameer
  * @since 4/24/14.
@@ -9,6 +11,20 @@ class ListConverter extends Converter {
   import ConverterUtils._
 
   def string(str: String, indentLevel: Int = 0): HTML = RawHTML(indent(indentLevel) + "<code>" + str + "</code>\n")
+
+  override def matrix[M](m: Matrix[M], indentLevel: Int): HTML = {
+    val sb = new StringBuilder
+    sb.append(indent(indentLevel) + "<ul class=\"matrix\">\n")
+    for(i <- 0 until m.rows) {
+      sb.append(indent(indentLevel+1) + "<ul class=\"row\">\n")
+      for(j <- 0 until m.cols) {
+        sb.append(indent(indentLevel+2) + "<li class=\"cell\">%f</li>\n" format(m.cell(i,j)))
+      }
+      sb.append(indent(indentLevel+1) + "</ul>\n")
+    }
+    sb.append(indent(indentLevel) + "</ul>\n")
+    RawHTML(sb.mkString)
+  }
 
   def map(m: scala.collection.Map[Any, Any], indentLevel: Int = 0, overriden: PartialFunction[Any, String] = Map.empty): HTML = {
     val sb = new StringBuffer()

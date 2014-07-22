@@ -16,7 +16,8 @@ class Tester(c: Converter) {
         "\n<hr>\n" + wrap("Products", "h3") + wrap(products, "div") +
         "\n<hr>\n" + wrap("Hybrid", "h3") + wrap(hybrid, "div") +
         "\n<hr>\n" + wrap("Misc", "h3") + wrap(misc, "div") +
-        "\n<hr>\n" + wrap("Plots", "h3") + wrap(plots, "div")
+        "\n<hr>\n" + wrap("Plots", "h3") + wrap(plots, "div") +
+        "\n<hr>\n" + wrap("Matrices", "h3") + wrap(matrices, "div")
       , "div")
     val html = htmlWrap(body)
     writeFile(filename, html)
@@ -114,6 +115,22 @@ class Tester(c: Converter) {
     sb append (wrap("Plots", "h4") + "\n" +
       ("<code style=\"background-color:#F0FFFF;\">%s</code>" format (p2)) + "\n" +
       ("<div>\n%s\n</div>" format c.convert(p2).source) + "\n"
+      )
+    sb.toString
+  }
+
+  def matrices: String = {
+    import Custom._
+    val data = (0 until 10).map(i => {
+      (0 until 25).map(j => {
+        (i+j).toDouble
+      }).toSeq
+    }).toSeq
+    val m = Matrix(data)
+    val sb = new StringBuffer()
+    sb append (wrap("Simple Matrix", "h4") + "\n" +
+      ("<code style=\"background-color:#F0FFFF;\">%s</code>" format (m)) + "\n" +
+      ("<div>\n%s\n</div>" format c.convert(m).source) + "\n"
       )
     sb.toString
   }
