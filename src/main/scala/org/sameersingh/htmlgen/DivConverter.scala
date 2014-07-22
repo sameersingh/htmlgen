@@ -31,13 +31,16 @@ class DivConverter extends Converter {
     val cells = m.data.map(_.map(m extr _)).flatten
     val min = cells.min
     val max = cells.max
-    val dim = 100.0/math.max(m.cols, m.rows)
+    val dimC = 100.0/(m.cols)
+    val dimR = 100.0/(m.rows)
     def opacity(d: Double) = (d-min)/(max-min)
     for(i <- 0 until m.rows) {
-      sb.append(indent(indentLevel+1) + "<div class=\"row\">\n")
+      sb.append(indent(indentLevel+1) + "<div class=\"matrixRow\" style=\"width:100%%;height:%f%%\">\n" format(dimR))
       for(j <- 0 until m.cols) {
         val c = opacity(m.cell(i,j))
-        sb.append(indent(indentLevel+2) + "<div class=\"cell\" style=\"opacity:%f;width:%f%%;height:%f%%\"></div>\n" format(c, dim, dim))
+        sb.append(indent(indentLevel+2) + "<div class=\"matrixCellContainer\" style=\"width:%f%%;height:100%%\">\n" format( dimC))
+        sb.append(indent(indentLevel+3) + "<div class=\"matrixCell\" style=\"opacity:%f;\"></div>\n" format(c))
+        sb.append(indent(indentLevel+2) + "</div>\n" format(c, dimC))
       }
       sb.append(indent(indentLevel+1) + "</div>\n")
     }

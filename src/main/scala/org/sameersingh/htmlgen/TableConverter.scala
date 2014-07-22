@@ -15,16 +15,16 @@ class TableConverter extends Converter {
 
   override def matrix[M](m: Matrix[M], indentLevel: Int): HTML = {
     val sb = new StringBuilder
-    sb.append(indent(indentLevel) + "<table>\n")
+    sb.append(indent(indentLevel) + "<table class=\"matrix\">\n")
     val cells = m.data.map(_.map(m extr _)).flatten
     val min = cells.min
     val max = cells.max
     def color(d: Double) = (255-255*((d-min)/(max-min))).toInt
     for(i <- 0 until m.rows) {
-      sb.append(indent(indentLevel+1) + "<tr>\n")
+      sb.append(indent(indentLevel+1) + "<tr class=\"matrixRow\">\n")
       for(j <- 0 until m.cols) {
         val c = color(m.cell(i,j))
-        sb.append(indent(indentLevel+2) + "<th style=\"background-color:rgb(%d,%d,%d)\"/>\n" format(c,c,c))
+        sb.append(indent(indentLevel+2) + "<td class=\"matrixCell\" style=\"background-color:rgb(%d,%d,%d)\"/>\n" format(c,c,c))
 
       }
       sb.append(indent(indentLevel+1) + "</tr>\n")

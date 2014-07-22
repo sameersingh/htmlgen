@@ -25,12 +25,12 @@ pre {
 
 /* Starting div styles */
 .typeName {
-  color:pink;
-  background-color:#004444;
+  color:#002200;
+  background-color:#FFFFFF;
 }
 
 .asString {
-  color:white;
+  color:dark-grey;
 }
 
 .asIterable {
@@ -42,38 +42,51 @@ pre {
 }
 
 .asMap {
-  color:yellow;
+  color:black;
 }
 
 .fields {
-  background-color:#000000;
+  padding-left:25px;
+  background-color:#F5FFFF;
+  margin: 0px;
 }
 
 .field {
-  background-color:#444444;
+  background-color:#FFF5FF;
+  padding: 0px;
+  margin: 0px;
 }
 
 .fieldName {
-  background-color:#222222;
+  color:#222222;
 }
 
 .fieldValue {
-  background-color:#666666;
+  color:#666666;
 }
 
 div.matrix {
-  padding: 10px;
+  background-color: white;
+  border: 2px solid black;
+  padding: 3px;
   width:250px;
   height:250px;
 }
 
-div.row {
+div.matrixRow {
   clear: both;
 }
 
-div.cell {
-  width: 15px;
-  height: 15px;
+div.matrixCellContainer {
   float:left;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+  border: 1px solid black;
+}
+
+div.matrixCell {
+  width: 100%;
+  height: 100%;
   background-color: black;
 }

@@ -16,9 +16,9 @@ class ListConverter extends Converter {
     val sb = new StringBuilder
     sb.append(indent(indentLevel) + "<ul class=\"matrix\">\n")
     for(i <- 0 until m.rows) {
-      sb.append(indent(indentLevel+1) + "<ul class=\"row\">\n")
+      sb.append(indent(indentLevel+1) + "<ul class=\"matrixRow\">\n")
       for(j <- 0 until m.cols) {
-        sb.append(indent(indentLevel+2) + "<li class=\"cell\">%f</li>\n" format(m.cell(i,j)))
+        sb.append(indent(indentLevel+2) + "<li class=\"matrixCell\">%f</li>\n" format(m.cell(i,j)))
       }
       sb.append(indent(indentLevel+1) + "</ul>\n")
     }
