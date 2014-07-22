@@ -49,6 +49,7 @@ Data structures
 - [x] Maps
 - [x] Product and Case classes
 - [x] Line Plots (using [scalaplot](http://sameersingh.org/scalaplot/))
+- [x] Matrices as Images
 - [ ] Histograms
 - [ ] Pie charts
 - [ ] Graphs
