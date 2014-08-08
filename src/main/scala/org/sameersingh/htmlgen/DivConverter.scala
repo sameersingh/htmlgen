@@ -1,7 +1,7 @@
 package org.sameersingh.htmlgen
 
 import scala.collection.Map
-import org.sameersingh.scalaplot.XYChart
+import org.sameersingh.scalaplot.Chart
 import org.sameersingh.htmlgen.Custom.Matrix
 
 /**
@@ -48,7 +48,7 @@ class DivConverter extends Converter {
     RawHTML(sb.mkString)
   }
 
-  override def chart(c: XYChart, indentLevel: Int): HTML = {
+  override def chart(c: Chart, indentLevel: Int): HTML = {
     import org.sameersingh.scalaplot.gnuplot.GnuplotPlotter
     val file = java.io.File.createTempFile("moro-plots", System.currentTimeMillis().toString)
     file.delete()
