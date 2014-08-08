@@ -1,5 +1,7 @@
 package org.sameersingh.htmlgen
 
+import org.sameersingh.scalaplot.{LegendPosX, LegendPosY}
+
 /**
  * @author sameer
  * @since 4/24/14.
@@ -101,20 +103,27 @@ class Tester(c: Converter) {
 
   def plots: String = {
     import org.sameersingh.scalaplot.Implicits._
+    val sb = new StringBuffer()
+    // XY
     val x = (1 until 10).map(_.toDouble)
     val y1 = x.map(j => math.pow(j, 1))
     val y2 = x.map(j => math.pow(j, 2))
     val y3 = x.map(j => math.pow(j, 3))
-    val p1 = plot(x -> Y(y1, "Linear") :: x -> Y(y2, "Square") :: x -> Y(y3, "Cube") :: List(), title = "Powers!", y = Axis(log = true), showLegend = true)
-    val p2 = plot(x -> Y(y1, "x") :: x -> Y(y2, "x^2") :: x -> Y(y3, "x^3") :: List(), title = "Powers!", y = Axis(log = true), showLegend = true)
-    val sb = new StringBuffer()
-    sb append (wrap("Plots", "h4") + "\n" +
-      ("<code style=\"background-color:#F0FFFF;\">%s</code>" format (p1)) + "\n" +
-      ("<div>\n%s\n</div>" format c.convert(p1).source) + "\n"
+    val xy   = xyChart(x -> Y(y1, "x") :: x -> Y(y2, "x^2") :: x -> Y(y3, "x^3") :: List(), title = "Powers!", y = Axis(log = true), showLegend = true)
+    sb append (wrap("XY", "h4") + "\n" +
+      ("<code style=\"background-color:#F0FFFF;\">%s</code>" format (xy)) + "\n" +
+      ("<div>\n%s\n</div>" format c.convert(xy).source) + "\n"
       )
-    sb append (wrap("Plots", "h4") + "\n" +
-      ("<code style=\"background-color:#F0FFFF;\">%s</code>" format (p2)) + "\n" +
-      ("<div>\n%s\n</div>" format c.convert(p2).source) + "\n"
+    // Bar
+    val ints = (2 to 10 by 2)
+    val names = ints.map(x => "Label" + x)
+    val by1 = ints.map(x => math.pow(x, 0.5))
+    val by2 = ints.map(x => math.pow(x, 0.25))
+    val by3 = ints.map(x => math.pow(x, 0.125))
+    val bar = barChart(names ->(Bar(by1, "x^{0.5}"), Bar(by2, "x^{0.25}"), Bar(by3, "x^{0.125}")), title = "Powers 2!", y = Axis(log = true), legendPosX = LegendPosX.Left, legendPosY = LegendPosY.Top)
+    sb append (wrap("Bar", "h4") + "\n" +
+      ("<code style=\"background-color:#F0FFFF;\">%s</code>" format (bar)) + "\n" +
+      ("<div>\n%s\n</div>" format c.convert(bar).source) + "\n"
       )
     sb.toString
   }
@@ -123,7 +132,7 @@ class Tester(c: Converter) {
     import Custom._
     val data = (0 until 10).map(i => {
       (0 until 25).map(j => {
-        (i+j).toDouble
+        (i + j).toDouble
       }).toSeq
     }).toSeq
     val m = Matrix(data)
