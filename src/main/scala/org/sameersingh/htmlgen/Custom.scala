@@ -18,6 +18,10 @@ object Custom {
     override def toString = s"Matrix: $rows x $cols"
   }
 
-  case class Graph[A](nodes: Seq[A], edges: Seq[(Int,Int)], directed: Boolean = false)(extr: A => String = (a:A) => a.toString)
+  case class Node[A](name: String, description: A, value: Double = 1.0, group: Int = 0)
+  case class Edge[B](source: Int, target: Int, description: B, value: Double = 1.0, group: Int = 0)
+  case class Graph[A,B](nodes: Seq[Node[A]], edges: Seq[Edge[B]], directed: Boolean = false)
+
+  case class Animation[A](frames: Seq[(String, A)])
 
 }

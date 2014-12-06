@@ -2,7 +2,7 @@ package org.sameersingh.htmlgen
 
 import scala.collection
 import org.sameersingh.scalaplot.Chart
-import org.sameersingh.htmlgen.Custom.{Graph, Matrix}
+import org.sameersingh.htmlgen.Custom.{Animation, Graph, Matrix}
 
 /**
  * @author sameer
@@ -19,14 +19,22 @@ trait Converter {
     else a match {
       case c: Chart => chart(c, indentLevel)
       case mat: Matrix[_] => matrix(mat)
-      case g: Graph[_] => graph(g)
+      case g: Graph[_,_] => graph(g)
       case m: scala.collection.Map[Any, Any] => map(m, indentLevel, overriden)
       case i: Iterable[Any] => iterable(i, indentLevel, overriden)
       case p: Product => product(p, indentLevel, overriden)
+      case i: Int => int(i, indentLevel)
+      case d: Double => double(d, indentLevel)
       case _ => string(a.toString, indentLevel)
     }
 
-  def graph[M](m: Graph[M], indentLevel: Int = 0): HTML = string("Graph not supported.")
+  def int(a: Int, indentLevel: Int = 0): HTML = string(a.toString, indentLevel)
+
+  def double(a: Double, indentLevel: Int = 0): HTML = string(a.toString, indentLevel)
+
+  def animation[M](anim: Animation[M], indentLevel: Int = 0): HTML = string("Animations not supported.")
+
+  def graph[A,B](m: Graph[A,B], indentLevel: Int = 0): HTML = string("Graph not supported.")
 
   def matrix[M](m: Matrix[M], indentLevel: Int = 0): HTML = string("Matrix not supported.")
 

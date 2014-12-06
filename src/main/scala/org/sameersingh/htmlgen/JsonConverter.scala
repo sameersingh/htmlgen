@@ -13,6 +13,10 @@ class JsonConverter extends Converter {
 
   def jsonToHtml(json: JsValue) = RawHTML(Json.stringify(json))
 
+  override def int(a: Int, indentLevel: Int): HTML = jsonToHtml(JsNumber(a))
+
+  override def double(a: Double, indentLevel: Int): HTML = jsonToHtml(JsNumber(a))
+
   override def string(a: String, indentLevel: Int): HTML = RawHTML(Json.prettyPrint(Json.toJson(a)))
 
   override def map(a: Map[Any, Any], indentLevel: Int, overriden: PartialFunction[Any, String]): HTML = {
