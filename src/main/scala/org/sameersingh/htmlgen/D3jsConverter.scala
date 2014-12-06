@@ -2,7 +2,7 @@ package org.sameersingh.htmlgen
 
 import java.io.{File, PrintWriter, StringWriter}
 
-import org.sameersingh.htmlgen.Custom.{Edge, Node, Graph}
+import org.sameersingh.htmlgen.Custom.{Animation, Edge, Node, Graph}
 
 import scala.collection.Map
 import scala.util.Random
@@ -41,6 +41,33 @@ class D3jsConverter extends Converter {
     println("Writing: " + writer.toString)
     RawHTML(writer.toString)
   }
+
+  override def animation[A](m: Animation[A], indentLevel: Int): HTML = {
+    val writer = new StringWriter()
+    val sb = new PrintWriter(writer)
+    val divId = random.nextInt(10000)
+    sb.println(s"<div id='animation$divId'>")
+    for(index <- 0 until m.frames.size) {
+      val frame = DivConverter.convert(m.frames(index)._2, indentLevel)
+      val label = m.frames(index)._1
+      sb.println(s"<div id='frame$index' class='hide'>")
+      sb.println(s"  <h2>$label <small>$index</small></h2>")
+      sb.println(frame.source)
+      sb.println("</div>")
+    }
+    sb.println("</div>")
+    sb.println(s"""
+        |<script src="d3utils.js"></script>
+        |<script type=\"text/javascript\">
+        |  animate("animation$divId", ${m.frames.length});
+        |</script>
+      """.stripMargin)
+    sb.flush()
+    sb.close()
+    println("Writing: " + writer.toString)
+    RawHTML(writer.toString)
+  }
+
 }
 
 object D3jsConverter extends D3jsConverter {
@@ -50,11 +77,15 @@ object D3jsConverter extends D3jsConverter {
       """
         |<html>
         |<head>
+        |    <link rel="stylesheet" type="text/css" href="htmlgen.css"/>
+        |    <!--link rel="stylesheet" type="text/css" href="file:///Users/sameer/Work/src/research/wolfe/wolfenstein/public/javascripts/bootstrap/css/bootstrap.min.css"/-->
         |    <script type="text/javascript" src="file:///Users/sameer/Work/src/research/wolfe/wolfenstein/public/javascripts/d3.v3.min.js"></script>
+        |    <script type="text/javascript" src="file:///Users/sameer/Work/src/research/wolfe/wolfenstein/public/javascripts/jquery-1.9.0.min.js"></script>
         |</head>
         |
         |<body>
       """.stripMargin)
+    /*
     val graph = Graph(Seq(
       Node("A", "a", group=1),
       Node("B", "a", group=2),
@@ -70,8 +101,9 @@ object D3jsConverter extends D3jsConverter {
         Edge(5,1,"a-b"),
         Edge(0,2,"a-b"),
         Edge(0,3,"a-b")
-      ))
-    val html = convert(graph)
+      ))*/
+    val animation = Animation(Seq("linear" -> Seq(1,2,3,4), "squares" -> Seq(1,4,9,16), "threes" -> Seq(1,8,27,64)))
+    val html = convert(animation)
     output.println(html.source)
     output.println(
       """

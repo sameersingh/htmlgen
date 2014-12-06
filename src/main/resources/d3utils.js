@@ -97,3 +97,35 @@ function drawGraph(graph, divId) {
     d3.select(this).classed("dragging", false);
   }
 }
+
+function animate(divId, maxFrames) {
+  // add buttons
+  $('#'+divId).append('<button type="button" id="' + divId + 'prev" class="btn btn-default">&lt;</span></button>')
+  $('#'+divId).append('<button type="button" id="' + divId + 'next" class="btn btn-default">&gt;</span></button>')
+  var currentSelection = 0;
+  $('#'+divId + ' #frame0').removeClass('hide');
+
+  $('#'+divId + 'prev').on('click', function () {
+    if(currentSelection > 0) {
+      currentSelection -= 1;
+      changeFrame(currentSelection + 1, currentSelection);
+    } else {
+      currentSelection = maxFrames - 1;
+      changeFrame(0, currentSelection);
+    }
+  })
+  $('#'+divId + 'next').on('click', function () {
+    if(currentSelection < maxFrames - 1) {
+      currentSelection += 1;
+      changeFrame(currentSelection - 1, currentSelection);
+    } else {
+      currentSelection = 0;
+      changeFrame(maxFrames-1, currentSelection);
+    }
+  })
+
+  function changeFrame(oldSel, newSel) {
+    $('#'+divId + ' #frame' + oldSel).addClass('hide');
+    $('#'+divId + ' #frame' + newSel).removeClass('hide');
+  }
+}

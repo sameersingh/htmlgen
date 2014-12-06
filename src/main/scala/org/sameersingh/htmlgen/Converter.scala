@@ -17,6 +17,7 @@ trait Converter {
     if (maxIndent <= indentLevel) string("...")
     else if (overriden.isDefinedAt(a)) RawHTML(overriden(a))
     else a match {
+      case a: Animation[_] => animation(a, indentLevel)
       case c: Chart => chart(c, indentLevel)
       case mat: Matrix[_] => matrix(mat)
       case g: Graph[_,_] => graph(g)
