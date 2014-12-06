@@ -86,6 +86,7 @@ function drawGraph(graph, divId) {
   function dragstarted(d) {
     d3.event.sourceEvent.stopPropagation();
     d3.select(this).classed("dragging", true);
+    force.start();
   }
 
   function dragged(d) {
