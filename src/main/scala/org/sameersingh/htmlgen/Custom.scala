@@ -31,6 +31,6 @@ object Custom {
       Graph(nodes.map(na => Node(na._1, na._2)), edges.map(e => Edge(e._1, e._2, e._3)))
   }
 
-  case class Animation[A](frames: Seq[(String, A)])
+  case class Animation[A](frames: (String, A)*)
 
 }

@@ -30,10 +30,9 @@ class D3jsConverter extends Converter {
         |<div id="graphDiv$divId">
         |</div>
         |
-        |<script src="d3utils.js"></script>
         |<script type=\"text/javascript\">
         |  var graph = ${JsonConverter.product(m).source};
-        |  drawGraph(graph, "graphDraw$divId");
+        |  drawGraph(graph, "graphDiv$divId");
         |</script>
       """.stripMargin)
     sb.flush()
@@ -47,7 +46,7 @@ class D3jsConverter extends Converter {
     val divId = random.nextInt(10000)
     sb.println(s"<div id='animation$divId'>")
     for(index <- 0 until m.frames.size) {
-      val frame = DivConverter.convert(m.frames(index)._2, indentLevel)
+      val frame = convert(m.frames(index)._2, indentLevel)
       val label = m.frames(index)._1
       sb.println(s"<div id='frame$index' class='hide'>")
       sb.println(s"  <h2>$label <small>$index</small></h2>")
@@ -56,7 +55,6 @@ class D3jsConverter extends Converter {
     }
     sb.println("</div>")
     sb.println(s"""
-        |<script src="d3utils.js"></script>
         |<script type=\"text/javascript\">
         |  animate("animation$divId", ${m.frames.length});
         |</script>
@@ -100,7 +98,7 @@ object D3jsConverter extends D3jsConverter {
         Edge(0,2,"a-b"),
         Edge(0,3,"a-b")
       ))*/
-    val animation = Animation(Seq("linear" -> Seq(1,2,3,4), "squares" -> Seq(1,4,9,16), "threes" -> Seq(1,8,27,64)))
+    val animation = Animation("linear" -> Seq(1,2,3,4), "squares" -> Seq(1,4,9,16), "threes" -> Seq(1,8,27,64))
     val html = convert(animation)
     output.println(html.source)
     output.println(
