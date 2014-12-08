@@ -91,3 +91,6 @@ div.matrixCell {
   background-color: black;
 }
 
+.hide {
+  display: none;
+}
