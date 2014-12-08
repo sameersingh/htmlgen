@@ -1,7 +1,7 @@
 function drawGraph(graph, divId) {
   console.log(graph);
-  var width = 960,
-      height = 500;
+  var width = 750,
+      height = 450;
 
   var color = d3.scale.category20();
 
@@ -49,8 +49,9 @@ function drawGraph(graph, divId) {
       .enter().append("line")
         .attr("class", "link")
         .style("stroke-width", function(d) { return Math.sqrt(10*d.value); })
-        .style("stroke", function(d) { return color(d.group); })
-        .attr("title", function(d) { return d.name; });
+        .style("stroke", function(d) { return color(d.group); });
+  link.append("svg:title")
+      .text(function(d) { return JSON.stringify(d.description, null, '\t'); });
 
   var node = vis.selectAll("circle.node")
         .data(graph.nodes)
@@ -60,7 +61,9 @@ function drawGraph(graph, divId) {
       //CIRCLE
       node.append("svg:circle")
         .attr("r", function(d) { return 10*d.value; })
-        .attr("fill", function(d) { return color(d.group); });
+        .attr("fill", function(d) { return color(d.group); })
+        .append("svg:title")
+        .text(function(d) { return JSON.stringify(d.description, null, '\t'); });
 
       //TEXT
       node.append("text")
@@ -100,8 +103,8 @@ function drawGraph(graph, divId) {
 
 function animate(divId, maxFrames) {
   // add buttons
-  $('#'+divId).append('<button type="button" id="' + divId + 'prev" class="btn btn-default" style="width:50%;">&lt; Previous</span></button>')
-  $('#'+divId).append('<button type="button" id="' + divId + 'next" class="btn btn-default" style="width:50%;">Next &gt;</span></button>')
+  $('#'+divId).prepend('<button type="button" id="' + divId + 'next" class="btn btn-default" style="width:50%;">Next &gt;</span></button>')
+  $('#'+divId).prepend('<button type="button" id="' + divId + 'prev" class="btn btn-default" style="width:50%;">&lt; Previous</span></button>')
   var currentSelection = 0;
   $('#'+divId + ' #frame0').removeClass('hide');
 
