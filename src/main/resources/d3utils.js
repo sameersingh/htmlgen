@@ -100,8 +100,8 @@ function drawGraph(graph, divId) {
 
 function animate(divId, maxFrames) {
   // add buttons
-  $('#'+divId).append('<button type="button" id="' + divId + 'prev" class="btn btn-default">&lt;</span></button>')
-  $('#'+divId).append('<button type="button" id="' + divId + 'next" class="btn btn-default">&gt;</span></button>')
+  $('#'+divId).append('<button type="button" id="' + divId + 'prev" class="btn btn-default" style="width:50%;">&lt; Previous</span></button>')
+  $('#'+divId).append('<button type="button" id="' + divId + 'next" class="btn btn-default" style="width:50%;">Next &gt;</span></button>')
   var currentSelection = 0;
   $('#'+divId + ' #frame0').removeClass('hide');
 
