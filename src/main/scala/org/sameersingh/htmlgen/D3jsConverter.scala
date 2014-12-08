@@ -38,7 +38,6 @@ class D3jsConverter extends Converter {
       """.stripMargin)
     sb.flush()
     sb.close()
-    println("Writing: " + writer.toString)
     RawHTML(writer.toString)
   }
 
@@ -64,7 +63,6 @@ class D3jsConverter extends Converter {
       """.stripMargin)
     sb.flush()
     sb.close()
-    println("Writing: " + writer.toString)
     RawHTML(writer.toString)
   }
 
@@ -78,7 +76,7 @@ object D3jsConverter extends D3jsConverter {
         |<html>
         |<head>
         |    <link rel="stylesheet" type="text/css" href="htmlgen.css"/>
-        |    <!--link rel="stylesheet" type="text/css" href="file:///Users/sameer/Work/src/research/wolfe/wolfenstein/public/javascripts/bootstrap/css/bootstrap.min.css"/-->
+        |    <link rel="stylesheet" type="text/css" href="file:///Users/sameer/Work/src/research/wolfe/wolfenstein/public/javascripts/bootstrap/css/bootstrap.min.css"/>
         |    <script type="text/javascript" src="file:///Users/sameer/Work/src/research/wolfe/wolfenstein/public/javascripts/d3.v3.min.js"></script>
         |    <script type="text/javascript" src="file:///Users/sameer/Work/src/research/wolfe/wolfenstein/public/javascripts/jquery-1.9.0.min.js"></script>
         |</head>
