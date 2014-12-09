@@ -2,7 +2,8 @@ package org.sameersingh.htmlgen
 
 import java.io.{File, PrintWriter, StringWriter}
 
-import org.sameersingh.htmlgen.Custom.{Animation, Edge, Node, Graph}
+import org.sameersingh.htmlgen.Custom._
+import org.sameersingh.scalaplot.Chart
 
 import scala.collection.Map
 import scala.util.Random
@@ -64,6 +65,9 @@ class D3jsConverter extends Converter {
     RawHTML(writer.toString)
   }
 
+  override def matrix[M](m: Matrix[M], indentLevel: Int): HTML = DivConverter.matrix(m, indentLevel)
+
+  override def chart(c: Chart, indentLevel: Int): HTML = DivConverter.chart(c, indentLevel)
 }
 
 object D3jsConverter extends D3jsConverter {
@@ -77,17 +81,17 @@ object D3jsConverter extends D3jsConverter {
         |    <link rel="stylesheet" type="text/css" href="file:///Users/sameer/Work/src/research/wolfe/wolfenstein/public/javascripts/bootstrap/css/bootstrap.min.css"/>
         |    <script type="text/javascript" src="file:///Users/sameer/Work/src/research/wolfe/wolfenstein/public/javascripts/d3.v3.min.js"></script>
         |    <script type="text/javascript" src="file:///Users/sameer/Work/src/research/wolfe/wolfenstein/public/javascripts/jquery-1.9.0.min.js"></script>
+        |    <script type="text/javascript" src="d3utils.js"></script>
         |</head>
         |
         |<body>
       """.stripMargin)
-    /*
     val graph = Graph(Seq(
-      Node("A", "a", group=1),
-      Node("B", "a", group=2),
-      Node("C", "a", group=3),
-      Node("D", "a", group=4),
-      Node("E", "a", group=5),
+      Node("A", "a", group=0, value=0.2),
+      Node("B", "a", group=0, value=0.4),
+      Node("C", "a", group=0, value=0.6),
+      Node("D", "a", group=0, value=0.8),
+      Node("E", "a", group=0, value=1.0),
       Node("F", "f")),
       Seq(
         Edge(0,1,"a-b"),
@@ -97,8 +101,8 @@ object D3jsConverter extends D3jsConverter {
         Edge(5,1,"a-b"),
         Edge(0,2,"a-b"),
         Edge(0,3,"a-b")
-      ))*/
-    val animation = Animation("linear" -> Seq(1,2,3,4), "squares" -> Seq(1,4,9,16), "threes" -> Seq(1,8,27,64))
+      ))
+    val animation = Animation("graph" -> graph)
     val html = convert(animation)
     output.println(html.source)
     output.println(

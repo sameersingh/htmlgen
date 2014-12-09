@@ -29,6 +29,16 @@ object Custom {
       Graph(nodes.map(na => Node(na._1, na._2)), edges.map(e => Edge(e._1, e._2, e._1 -> e._2)))
     def apply[A,B](nodes: Seq[(String, A)], edges: Seq[(Int, Int, B)]): Graph[A, B] =
       Graph(nodes.map(na => Node(na._1, na._2)), edges.map(e => Edge(e._1, e._2, e._3)))
+
+    def fromPreds[A](nodes: Seq[A],
+                     edges: (A,A)=>Boolean,
+                     labels: A => String = (x:A) => x.toString,
+                     description: A => Any = (x:A) => x,
+                     groups: A => Int = (x:A) => 0,
+                     values: A => Double = (x:A) => 1.0,
+                     edgeValues: (A,A)=> Double = (a1:A,a2:A)=>1.0): Graph[Any, String] =
+      Graph(nodes.map(n => Node(labels(n), description(n), values(n), groups(n))),
+        (for(i <- (0 until nodes.length); j <- (0 until nodes.length); if i<j && edges(nodes(i), nodes(j))) yield Edge(i, j, "")).toSeq)
   }
 
   case class Animation[A](frames: (String, A)*)
