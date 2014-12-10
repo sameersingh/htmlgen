@@ -38,7 +38,7 @@ object Custom {
                      values: A => Double = (x:A) => 1.0,
                      edgeValues: (A,A)=> Double = (a1:A,a2:A)=>1.0): Graph[Any, String] =
       Graph(nodes.map(n => Node(labels(n), description(n), values(n), groups(n))),
-        (for(i <- (0 until nodes.length); j <- (0 until nodes.length); if i<j && edges(nodes(i), nodes(j))) yield Edge(i, j, "")).toSeq)
+        (for(i <- (0 until nodes.length); j <- (0 until nodes.length); if i<j && (edges(nodes(i), nodes(j)) || edges(nodes(j), nodes(i)))) yield Edge(i, j, "")).toSeq)
   }
 
   case class Carousel[A](frames: (String, A)*)

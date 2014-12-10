@@ -17,6 +17,7 @@ trait Converter {
     if (maxIndent <= indentLevel) string("...")
     else if (overriden.isDefinedAt(a)) RawHTML(overriden(a))
     else a match {
+      case html: RawHTML => html
       case a: Carousel[_] => carousel(a, indentLevel)
       case c: Chart => chart(c, indentLevel)
       case mat: Matrix[_] => matrix(mat)
