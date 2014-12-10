@@ -1,6 +1,7 @@
 package org.sameersingh.htmlgen
 
 import java.io.{File, PrintWriter, StringWriter}
+import java.util.UUID
 
 import org.sameersingh.htmlgen.Custom._
 import org.sameersingh.scalaplot.Chart
@@ -25,15 +26,14 @@ class D3jsConverter extends Converter {
   override def graph[A, B](m: Graph[A, B], indentLevel: Int): HTML = {
     val writer = new StringWriter()
     val sb = new PrintWriter(writer)
-    val divId = random.nextInt(10000)
+    val divId = UUID.randomUUID()
     sb.println(
       s"""
         |<div id="graphDiv$divId">
         |</div>
         |
         |<script type=\"text/javascript\">
-        |  var graph = ${JsonConverter.product(m).source};
-        |  drawGraph(graph, "graphDiv$divId");
+        |  drawGraph(${JsonConverter.product(m).source}, "graphDiv$divId");
         |</script>
       """.stripMargin)
     sb.flush()
@@ -41,10 +41,10 @@ class D3jsConverter extends Converter {
     RawHTML(writer.toString)
   }
 
-  override def animation[A](m: Animation[A], indentLevel: Int): HTML = {
+  override def carousel[A](m: Carousel[A], indentLevel: Int): HTML = {
     val writer = new StringWriter()
     val sb = new PrintWriter(writer)
-    val divId = random.nextInt(10000)
+    val divId = UUID.randomUUID()
     sb.println(s"<div id='animation$divId'>")
     for(index <- 0 until m.frames.size) {
       val frame = convert(m.frames(index)._2, indentLevel)
@@ -102,7 +102,7 @@ object D3jsConverter extends D3jsConverter {
         Edge(0,2,"a-b"),
         Edge(0,3,"a-b")
       ))
-    val animation = Animation("graph" -> graph)
+    val animation = Carousel("graph" -> graph)
     val html = convert(animation)
     output.println(html.source)
     output.println(
