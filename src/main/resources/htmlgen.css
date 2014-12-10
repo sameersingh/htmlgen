@@ -49,12 +49,14 @@ pre {
   padding-left:25px;
   background-color:#F5FFFF;
   margin: 0px;
+  width: 100%;
 }
 
 .field {
   background-color:#FFF5FF;
   padding: 0px;
   margin: 0px;
+  width: 100%;
 }
 
 .fieldName {
@@ -63,6 +65,7 @@ pre {
 
 .fieldValue {
   color:#666666;
+  width: 100%;
 }
 
 div.matrix {
@@ -71,6 +74,8 @@ div.matrix {
   padding: 3px;
   width:250px;
   height:250px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 div.matrixRow {
