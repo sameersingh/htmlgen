@@ -2,7 +2,7 @@ package org.sameersingh.htmlgen
 
 import scala.collection
 import org.sameersingh.scalaplot.Chart
-import org.sameersingh.htmlgen.Custom.{Animation, Graph, Matrix}
+import org.sameersingh.htmlgen.Custom.{Carousel, Graph, Matrix}
 
 /**
  * @author sameer
@@ -17,7 +17,7 @@ trait Converter {
     if (maxIndent <= indentLevel) string("...")
     else if (overriden.isDefinedAt(a)) RawHTML(overriden(a))
     else a match {
-      case a: Animation[_] => animation(a, indentLevel)
+      case a: Carousel[_] => carousel(a, indentLevel)
       case c: Chart => chart(c, indentLevel)
       case mat: Matrix[_] => matrix(mat)
       case g: Graph[_,_] => graph(g)
@@ -33,7 +33,7 @@ trait Converter {
 
   def double(a: Double, indentLevel: Int = 0): HTML = string(a.toString, indentLevel)
 
-  def animation[M](anim: Animation[M], indentLevel: Int = 0): HTML = string("Animations not supported.")
+  def carousel[M](anim: Carousel[M], indentLevel: Int = 0): HTML = string("Animations not supported.")
 
   def graph[A,B](m: Graph[A,B], indentLevel: Int = 0): HTML = string("Graph not supported.")
 

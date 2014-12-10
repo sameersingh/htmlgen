@@ -41,6 +41,8 @@ object Custom {
         (for(i <- (0 until nodes.length); j <- (0 until nodes.length); if i<j && edges(nodes(i), nodes(j))) yield Edge(i, j, "")).toSeq)
   }
 
-  case class Animation[A](frames: (String, A)*)
-
+  case class Carousel[A](frames: (String, A)*)
+  object Carousel {
+    def items[A](as: A*): Carousel[A] = Carousel(as.map("" -> _):_*)
+  }
 }
