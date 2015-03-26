@@ -41,6 +41,26 @@ class D3jsConverter extends Converter {
     RawHTML(writer.toString)
   }
 
+
+  override def vectors(v: Vectors, indentLevel: Int): HTML = {
+    val t = if(v.points.head._3.length > 2) TSNE.project(v, 2) else v
+    val writer = new StringWriter()
+    val sb = new PrintWriter(writer)
+    val divId = UUID.randomUUID()
+    sb.println(
+      s"""
+         |<div id="vectorsDiv$divId">
+                                   |</div>
+                                   |
+                                   |<script type=\"text/javascript\">
+                                   |  drawVectors(${JsonConverter.iterable(t.points).source}, "vectorsDiv$divId");
+                                                                                                     |</script>
+      """.stripMargin)
+    sb.flush()
+    sb.close()
+    RawHTML(writer.toString)
+  }
+
   override def carousel[A](m: Carousel[A], indentLevel: Int): HTML = {
     val writer = new StringWriter()
     val sb = new PrintWriter(writer)
@@ -49,7 +69,7 @@ class D3jsConverter extends Converter {
     for(index <- 0 until m.frames.size) {
       val frame = convert(m.frames(index)._2, indentLevel)
       val label = m.frames(index)._1
-      sb.println(s"<div id='frame$index' class='hide'>")
+      sb.println(s"<div id='frame$index'>") // class='hide'
       sb.println(s"  <h2>$label <small>$index</small></h2>")
       sb.println(frame.source)
       sb.println("</div>")
@@ -72,20 +92,12 @@ class D3jsConverter extends Converter {
 
 object D3jsConverter extends D3jsConverter {
   def main(args: Array[String]): Unit = {
-    val output = new PrintWriter(new File("src/main/resources/d3js.html"))
-    output.println(
-      """
-        |<html>
-        |<head>
-        |    <link rel="stylesheet" type="text/css" href="htmlgen.css"/>
-        |    <link rel="stylesheet" type="text/css" href="file:///Users/sameer/Work/src/research/wolfe/wolfenstein/public/javascripts/bootstrap/css/bootstrap.min.css"/>
-        |    <script type="text/javascript" src="file:///Users/sameer/Work/src/research/wolfe/wolfenstein/public/javascripts/d3.v3.min.js"></script>
-        |    <script type="text/javascript" src="file:///Users/sameer/Work/src/research/wolfe/wolfenstein/public/javascripts/jquery-1.9.0.min.js"></script>
-        |    <script type="text/javascript" src="d3utils.js"></script>
-        |</head>
-        |
-        |<body>
-      """.stripMargin)
+    val vectors = TSNE.project(Vectors(Seq(
+      (0, "0", Seq(0.0, 0.0, 0.0)),
+      (1, "1", Seq(1.0, 0.0, 0.0)),
+      (2, "2", Seq(1.0, 0.0, 1.0)),
+      (3, "3", Seq(1.0, 1.0, 1.0))
+    )), 2)
     val graph = Graph(Seq(
       Node("A", "a", group=0, value=0.2),
       Node("B", "a", group=0, value=0.4),
@@ -102,7 +114,22 @@ object D3jsConverter extends D3jsConverter {
         Edge(0,2,"a-b"),
         Edge(0,3,"a-b")
       ))
-    val animation = Carousel("graph" -> graph)
+    val animation = Carousel("vects" -> vectors)
+    println(JsonConverter.convert(vectors.points).source)
+    val output = new PrintWriter(new File("src/main/resources/d3js.html"))
+    output.println(
+      """
+        |<html>
+        |<head>
+        |    <link rel="stylesheet" type="text/css" href="htmlgen.css"/>
+        |    <link rel="stylesheet" type="text/css" href="file:///Users/sameer/Work/src/research/uclmr/moro/public/javascripts/bootstrap/css/bootstrap.min.css"/>
+        |    <script type="text/javascript" src="file:///Users/sameer/Work/src/research/uclmr/moro/public/javascripts/d3.v3.min.js"></script>
+        |    <script type="text/javascript" src="file:///Users/sameer/Work/src/research/uclmr/moro/public/javascripts/jquery-1.9.0.min.js"></script>
+        |    <script type="text/javascript" src="d3utils.js"></script>
+        |</head>
+        |
+        |<body>
+      """.stripMargin)
     val html = convert(animation)
     output.println(html.source)
     output.println(

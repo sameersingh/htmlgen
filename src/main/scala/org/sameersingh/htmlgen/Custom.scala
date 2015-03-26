@@ -45,4 +45,6 @@ object Custom {
   object Carousel {
     def items[A](as: A*): Carousel[A] = Carousel(as.map("" -> _):_*)
   }
+
+  case class Vectors(points: Seq[(Int, String, Seq[Double])])
 }

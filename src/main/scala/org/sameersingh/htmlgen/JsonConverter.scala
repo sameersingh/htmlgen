@@ -48,6 +48,6 @@ class JsonConverter extends Converter {
 
 object JsonConverter extends JsonConverter {
   def main(args: Array[String]): Unit = {
-
+    println(convert(Seq(("a" -> ("b" -> "c")))).source)
   }
 }

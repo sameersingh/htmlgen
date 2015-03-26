@@ -2,7 +2,7 @@ package org.sameersingh.htmlgen
 
 import scala.collection
 import org.sameersingh.scalaplot.Chart
-import org.sameersingh.htmlgen.Custom.{Carousel, Graph, Matrix}
+import org.sameersingh.htmlgen.Custom.{Vectors, Carousel, Graph, Matrix}
 
 /**
  * @author sameer
@@ -22,6 +22,7 @@ trait Converter {
       case c: Chart => chart(c, indentLevel)
       case mat: Matrix[_] => matrix(mat)
       case g: Graph[_,_] => graph(g)
+      case v: Vectors => vectors(v)
       case m: scala.collection.Map[Any, Any] => map(m, indentLevel, overriden)
       case i: Iterable[Any] => iterable(i, indentLevel, overriden)
       case p: Product => product(p, indentLevel, overriden)
@@ -39,6 +40,8 @@ trait Converter {
   def graph[A,B](m: Graph[A,B], indentLevel: Int = 0): HTML = string("Graph not supported.")
 
   def matrix[M](m: Matrix[M], indentLevel: Int = 0): HTML = string("Matrix not supported.")
+
+  def vectors(v: Vectors, indentLevel: Int = 0): HTML = string("Vectors not supported.")
 
   def chart(c: Chart, indentLevel: Int = 0): HTML = string("Charts not supported.")
 
