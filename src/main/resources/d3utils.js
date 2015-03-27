@@ -3,7 +3,7 @@ function drawGraph(graph, divId) {
   var width = 750,
       height = 450;
 
-  var color = d3.scale.category20c();
+  var color = d3.scale.category10();
 
   var force = d3.layout.force()
     .charge(-1000)
@@ -142,7 +142,7 @@ function drawVectors(vectors, divId) {
   var width = 600,
       height = 450;
 
-  var color = d3.scale.category20c();
+  var color = d3.scale.category10();
 
   var drag = d3.behavior.drag()
       .origin(function(d) { return d; })
