@@ -15,6 +15,7 @@ import scala.util.Random
  */
 class D3jsConverter extends Converter {
   val random = new Random()
+
   override def string(a: String, indentLevel: Int): HTML = DivConverter.string(a, indentLevel)
 
   override def iterable(a: Iterable[Any], indentLevel: Int, overriden: PartialFunction[Any, String]): HTML = DivConverter.iterable(a, indentLevel)
@@ -29,12 +30,12 @@ class D3jsConverter extends Converter {
     val divId = UUID.randomUUID()
     sb.println(
       s"""
-        |<div id="graphDiv$divId">
-        |</div>
-        |
-        |<script type=\"text/javascript\">
-        |  drawGraph(${JsonConverter.product(m).source}, "graphDiv$divId");
-        |</script>
+         |<div id="graphDiv$divId">
+                                   |</div>
+                                   |
+                                   |<script type=\"text/javascript\">
+                                   | drawGraph(${JsonConverter.product(m).source}, "graphDiv$divId");
+                                                                                                    |</script>
       """.stripMargin)
     sb.flush()
     sb.close()
@@ -43,18 +44,18 @@ class D3jsConverter extends Converter {
 
 
   override def vectors(v: Vectors, indentLevel: Int): HTML = {
-    val t = if(v.points.head._3.length > 2) TSNE.project(v, 2) else v
+    val t = if (v.points.head._3.length > 2) TSNE.project(v, 2) else v
     val writer = new StringWriter()
     val sb = new PrintWriter(writer)
     val divId = UUID.randomUUID()
     sb.println(
       s"""
          |<div id="vectorsDiv$divId">
-                                   |</div>
-                                   |
-                                   |<script type=\"text/javascript\">
-                                   |  drawVectors(${JsonConverter.iterable(t.points).source}, "vectorsDiv$divId");
-                                                                                                     |</script>
+                                     |</div>
+                                     |
+                                     |<script type=\"text/javascript\">
+                                     | drawVectors(${JsonConverter.iterable(t.points).source}, "vectorsDiv$divId");
+                                                                                                                  |</script>
       """.stripMargin)
     sb.flush()
     sb.close()
@@ -66,7 +67,7 @@ class D3jsConverter extends Converter {
     val sb = new PrintWriter(writer)
     val divId = UUID.randomUUID()
     sb.println(s"<div id='animation$divId'>")
-    for(index <- 0 until m.frames.size) {
+    for (index <- 0 until m.frames.size) {
       val frame = convert(m.frames(index)._2, indentLevel)
       val label = m.frames(index)._1
       sb.println(s"<div id='frame$index'>") // class='hide'
@@ -75,10 +76,10 @@ class D3jsConverter extends Converter {
       sb.println("</div>")
     }
     sb.println("</div>")
-    sb.println(s"""
-        |<script type=\"text/javascript\">
-        |  animate("animation$divId", ${m.frames.length});
-        |</script>
+    sb.println( s"""
+                   |<script type=\"text/javascript\">
+                   | animate("animation$divId", ${m.frames.length});
+                                                                    |</script>
       """.stripMargin)
     sb.flush()
     sb.close()
@@ -92,30 +93,30 @@ class D3jsConverter extends Converter {
 
 object D3jsConverter extends D3jsConverter {
   def main(args: Array[String]): Unit = {
-    val vectors = TSNE.project(Vectors(Seq(
-      (0, "0", Seq(0.0, 0.0, 0.0)),
-      (1, "1", Seq(1.0, 0.0, 0.0)),
-      (2, "2", Seq(1.0, 0.0, 1.0)),
-      (3, "3", Seq(1.0, 1.0, 1.0))
-    )), 2)
+    val means = Seq(Seq(1.0, 0.0, 0.0), Seq(0.0, 1.0, 0.0), Seq(0.0, 0.0, 0.0), Seq(1.0, 1.0, 0.0))
+    val vecsPerClust = 2
+    val noise = 0.1
+    val random = new util.Random(0)
+    val vectors = Vectors(
+      means.zipWithIndex.map(xi => (0 until vecsPerClust).map(j => (xi._2, xi._2 + "_" + j, xi._1.map(v => v + random.nextGaussian() * noise)))).flatten
+    ).twoD
     val graph = Graph(Seq(
-      Node("A", "a", group=0, value=0.2),
-      Node("B", "a", group=0, value=0.4),
-      Node("C", "a", group=0, value=0.6),
-      Node("D", "a", group=0, value=0.8),
-      Node("E", "a", group=0, value=1.0),
+      Node("A", "a", group = 0, value = 0.2),
+      Node("B", "a", group = 0, value = 0.4),
+      Node("C", "a", group = 0, value = 0.6),
+      Node("D", "a", group = 0, value = 0.8),
+      Node("E", "a", group = 0, value = 1.0),
       Node("F", "f")),
       Seq(
-        Edge(0,1,"a-b"),
-        Edge(2,1,"a-b"),
-        Edge(3,1,"a-b"),
+        Edge(0, 1, "a-b"),
+        Edge(2, 1, "a-b"),
+        Edge(3, 1, "a-b"),
         //Edge(4,1,"a-b"),
-        Edge(5,1,"a-b"),
-        Edge(0,2,"a-b"),
-        Edge(0,3,"a-b")
+        Edge(5, 1, "a-b"),
+        Edge(0, 2, "a-b"),
+        Edge(0, 3, "a-b")
       ))
     val animation = Carousel("vects" -> vectors)
-    println(JsonConverter.convert(vectors.points).source)
     val output = new PrintWriter(new File("src/main/resources/d3js.html"))
     output.println(
       """

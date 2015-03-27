@@ -46,5 +46,8 @@ object Custom {
     def items[A](as: A*): Carousel[A] = Carousel(as.map("" -> _):_*)
   }
 
-  case class Vectors(points: Seq[(Int, String, Seq[Double])])
+  case class Vectors(points: Seq[(Int, String, Seq[Double])]) {
+    def norm = TSNE.norm(this)
+    def twoD = TSNE.project(this, 2)
+  }
 }

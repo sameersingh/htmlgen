@@ -8,18 +8,34 @@ import scala.collection.JavaConversions._
  * @since 3/24/15.
  */
 object TSNE {
-  val perplexity = 30
+  val maxIter: Int = 1000
+  val realMin: Double = 1e-12
+  val initialMomentum: Double = 0.5
+  val finalMomentum: Double = 0.8
+  val minGain: Double = 1e-2
+  val momentum: Double = initialMomentum
+  val switchMomentumIteration: Int = 100
+  val normalize: Boolean = false
+  val usePca: Boolean = false
+  val stopLyingIteration: Int = 250
+  val tolerance: Double = 1e-5
+  val learningRate: Double = 500
+  val useAdaGrad: Boolean = true
+  val perplexity: Double = 30
 
   def project(v: Custom.Vectors, dim: Int = 2): Custom.Vectors = {
-    val tsne = new org.deeplearning4j.plot.Tsne
+    val tsne = new org.deeplearning4j.plot.Tsne(maxIter, realMin, initialMomentum,
+      finalMomentum, momentum, switchMomentumIteration, normalize, usePca, stopLyingIteration,
+      tolerance, learningRate, useAdaGrad, perplexity, minGain)
     val mat = TSNE.vectToMat(v)
     val res = tsne.calculate(mat, dim, perplexity)
+    val rv = TSNE.matToVect(res, v)
     removeTemp()
-    norm(TSNE.matToVect(res, v))
+    rv.norm
   }
 
   def vectToMat(v: Custom.Vectors): INDArray = {
-    val arr = v.points.map(_._3.toArray).toArray
+    val arr = v.norm.points.map(_._3.toArray).toArray
     val m = new BaseNDArray(arr) {}
     m
   }
