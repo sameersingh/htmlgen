@@ -28,6 +28,7 @@ trait Converter {
       case p: Product => product(p, indentLevel, overriden)
       case i: Int => int(i, indentLevel)
       case d: Double => double(d, indentLevel)
+      case null => string("null", indentLevel)
       case _ => string(a.toString, indentLevel)
     }
 
@@ -97,4 +98,6 @@ class Convertable(a: Any, c: Converter) {
   def asDivs: HTML = DivConverter.convert(a)
 
   def asDivs(overriden: PartialFunction[Any, String]): HTML = DivConverter.convert(a, overriden = overriden)
+
+  def asD3: HTML = D3jsConverter.convert(a)
 }
