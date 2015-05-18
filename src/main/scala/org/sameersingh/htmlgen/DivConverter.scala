@@ -25,28 +25,7 @@ class DivConverter extends Converter {
   val fieldName = "fieldName"
   val fieldValue = "fieldValue"
 
-  override def matrix[M](m: Matrix[M], indentLevel: Int): HTML = {
-    val sb = new StringBuilder
-    sb.append(indent(indentLevel) + "<div class=\"matrix\">\n")
-    val cells = m.data.map(_.map(m extr _)).flatten
-    val min = cells.min
-    val max = cells.max
-    val dimC = 100.0/(m.cols)
-    val dimR = 100.0/(m.rows)
-    def opacity(d: Double) = (d-min)/(max-min)
-    for(i <- 0 until m.rows) {
-      sb.append(indent(indentLevel+1) + "<div class=\"matrixRow\" style=\"width:100%%;height:%f%%\">\n" format(dimR))
-      for(j <- 0 until m.cols) {
-        val c = opacity(m.cell(i,j))
-        sb.append(indent(indentLevel+2) + "<div class=\"matrixCellContainer\" style=\"width:%f%%;height:100%%\">\n" format( dimC))
-        sb.append(indent(indentLevel+3) + "<div class=\"matrixCell\" style=\"opacity:%f;\"></div>\n" format(c))
-        sb.append(indent(indentLevel+2) + "</div>\n" format(c, dimC))
-      }
-      sb.append(indent(indentLevel+1) + "</div>\n")
-    }
-    sb.append(indent(indentLevel) + "</div>\n")
-    RawHTML(sb.mkString)
-  }
+  override def matrix[M](m: Matrix[M], indentLevel: Int): HTML = TableConverter.matrix(m, indentLevel)
 
   override def chart(c: Chart, indentLevel: Int): HTML = {
     import org.sameersingh.scalaplot.gnuplot.GnuplotPlotter

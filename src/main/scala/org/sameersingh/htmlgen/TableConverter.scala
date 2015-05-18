@@ -19,16 +19,34 @@ class TableConverter extends Converter {
     val cells = m.data.map(_.map(m extr _)).flatten
     val min = cells.min
     val max = cells.max
-    def color(d: Double) = (255-255*((d-min)/(max-min))).toInt
-    for(i <- 0 until m.rows) {
+    val dimC = 250.0/(m.cols)
+    val dimR = 250.0/(m.rows)
+    def opacity(d: Double) = (d-min)/(max-min)
+    sb.append(indent(indentLevel+1) + "<thead>\n")
+    if(!m.colNames.isEmpty) {
+      // column names
       sb.append(indent(indentLevel+1) + "<tr class=\"matrixRow\">\n")
+      if(!m.rowNames.isEmpty)
+        sb.append(indent(indentLevel+1) + "<th></th>\n")
       for(j <- 0 until m.cols) {
-        val c = color(m.cell(i,j))
-        sb.append(indent(indentLevel+2) + "<td class=\"matrixCell\" style=\"background-color:rgb(%d,%d,%d)\"/>\n" format(c,c,c))
+        sb.append(indent(indentLevel+2) + "<th class=\"rotate\"><div><span>%s</span></div></th>\n" format (m.colNames(j)))
+      }
+      sb.append(indent(indentLevel+1) + "</tr>\n")
+    }
+    sb.append(indent(indentLevel+1) + "</thead>\n")
+    sb.append(indent(indentLevel+1) + "<tbody>\n")
+    for(i <- 0 until m.rows) {
+      sb.append(indent(indentLevel+1) + "<tr class=\"matrixRow\">\n") // style="width:100%%;height:%fpx" format(dimR)
+      if(!m.rowNames.isEmpty)
+        sb.append(indent(indentLevel+2) + "<th><div><span>%s</span></div></th>\n" format (m.rowNames(i)))
+      for(j <- 0 until m.cols) {
+        val o = opacity(m.cell(i,j))
+        sb.append(indent(indentLevel+2) + "<td class=\"matrixCell\" style=\"opacity:%f\"/>\n" format(o)) //width:%fpx;height:100%%;
 
       }
       sb.append(indent(indentLevel+1) + "</tr>\n")
     }
+    sb.append(indent(indentLevel+1) + "</tbody>\n")
     sb.append(indent(indentLevel) + "</table>\n")
     RawHTML(sb.mkString)
   }

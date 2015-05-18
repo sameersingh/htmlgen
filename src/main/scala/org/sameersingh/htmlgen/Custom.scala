@@ -7,11 +7,13 @@ package org.sameersingh.htmlgen
  */
 object Custom {
 
-  case class Matrix[A](data: Seq[Seq[A]])(implicit val extr: A => Double) {
+  case class Matrix[A](data: Seq[Seq[A]], rowNames: Seq[String] = Seq.empty, colNames: Seq[String] = Seq.empty)(implicit val extr: A => Double) {
     assert(data.length >= 1)
     assert(data.forall(_.length == data(0).length))
     val rows = data.length
     val cols = data(0).length
+    if(!rowNames.isEmpty) assert(rowNames.length == rows)
+    if(!colNames.isEmpty) assert(colNames.length == cols)
 
     def cell(i: Int, j: Int): Double = extr(data(i)(j))
 

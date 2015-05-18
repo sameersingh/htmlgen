@@ -135,11 +135,16 @@ class Tester(c: Converter) {
         (i + j).toDouble
       }).toSeq
     }).toSeq
-    val m = Matrix(data)
     val sb = new StringBuffer()
+    val m = Matrix(data)
     sb append (wrap("Simple Matrix", "h4") + "\n" +
       ("<code style=\"background-color:#F0FFFF;\">%s</code>" format (m)) + "\n" +
       ("<div>\n%s\n</div>" format c.convert(m).source) + "\n"
+      )
+    val ml = Matrix(data, (0 until 10).map("row" + _), (0 until 25).map("col" + _))
+    sb append (wrap("Matrix with Labels", "h4") + "\n" +
+      ("<code style=\"background-color:#F0FFFF;\">%s</code>" format (ml)) + "\n" +
+      ("<div>\n%s\n</div>" format c.convert(ml).source) + "\n"
       )
     sb.toString
   }
