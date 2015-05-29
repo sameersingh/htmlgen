@@ -1,5 +1,6 @@
 function drawGraph(graph, divId) {
   console.log(graph);
+  $("#"+divId).empty();
   var width = 750,
       height = 450;
 
@@ -106,9 +107,6 @@ function drawGraph(graph, divId) {
 }
 
 function animate(divId, maxFrames) {
-  // add buttons
-  $('#'+divId).prepend('<button type="button" id="' + divId + 'next" class="btn btn-default" style="width:50%;">Next &gt;</span></button>')
-  $('#'+divId).prepend('<button type="button" id="' + divId + 'prev" class="btn btn-default" style="width:50%;">&lt; Previous</span></button>')
   var currentSelection = 0;
   $('#'+divId + ' #frame0').removeClass('hide');
 
@@ -139,6 +137,7 @@ function animate(divId, maxFrames) {
 
 function drawVectors(vectors, divId) {
   console.log(vectors);
+  $("#"+divId).empty();
   var width = 600,
       height = 450;
 
