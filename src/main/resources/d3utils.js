@@ -187,6 +187,7 @@ function drawVectors(vectors, divId) {
     .text(function(d) { return JSON.stringify(d._2, null, '\t'); })
     .attr("x", function(d) { return margin + d._3[0]*(width-2*margin); })
     .attr("y", function(d) { return margin + d._3[1]*(height-2*margin); })
+    .attr("class", function(d) { return "nodeGroup" + d._1; })
     .attr("font-family",  "Bree Serif")
     .attr("font-size",    function(d) {  return  "1em"; });
 
