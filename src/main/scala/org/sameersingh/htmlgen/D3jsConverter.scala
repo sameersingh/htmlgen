@@ -68,8 +68,8 @@ class D3jsConverter extends Converter {
     val divId = UUID.randomUUID()
     sb.println(s"<div id='animation$divId'>")
     // add buttons
-    sb.println(s"  <button type='button' id='animation${divId}next' class='btn btn-default' style='width:49%;'>Next &gt;</span></button>")
     sb.println(s"  <button type='button' id='animation${divId}prev' class='btn btn-default' style='width:49%;'>&lt; Previous</span></button>")
+    sb.println(s"  <button type='button' id='animation${divId}next' class='btn btn-default' style='width:49%;'>Next &gt;</span></button>")
     for (index <- 0 until m.frames.size) {
       val frame = convert(m.frames(index)._2, indentLevel)
       val label = m.frames(index)._1
